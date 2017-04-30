@@ -199,6 +199,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     color: white;
     display: block;
     margin-top: 30px;
+    margin-bottom: 10px;
     padding: 5px 5px;
     border-radius: @border-radius;
     border: 1.5px solid;
@@ -209,11 +210,27 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     &:hover, &:focus {
 	color: white;
     }
+    figure {
+	border-radius: @border-radius;
+    }
     &.trainable {
 	max-width: @trainable-card-width;
 	.card-image {
 	    width: 49.5%;
-	}
+            @slow-transition: 1s;
+            transition: width @slow-transition, height @slow-transition, border-width @slow-transition;
+        }
+        figure:hover, figure:focus {
+            .card-image {
+                width: 0;
+                border-width: 0;
+            }
+	    .card-image:hover, .card-image:focus {
+                width: 98%;
+                max-width: 534px;
+	        border-width: 1.5px;
+	    }
+        }
     }
     .card-image {
         background-color: rgba(255, 255, 255, 0.8);
@@ -273,6 +290,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
 
     .rarity, .attribute {
 	height: @card-height + 10px;
+        pointer-events: none;
     }
     .rarity, .attribute, .member-name {
 	position: absolute;
@@ -298,6 +316,13 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
 	color: white;
 	margin: 0;
 	padding: 0;
+    }
+}
+
+.card-wrapper + .below-item-buttons {
+    .btn {
+        border-radius: 10px;
+        font-size: 1em;
     }
 }
 

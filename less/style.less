@@ -70,7 +70,6 @@ body.shortcut- {
 h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     &:not(.japanese) {
 	font-family: 'Teko', monospace;
-	font-style: italic;
 	font-weight: normal;
     }
     &.japanese {
@@ -207,6 +206,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     positon: relative;
     text-align: center;
     max-width: @card-width;
+    overflow: hidden;
     &:hover, &:focus {
 	color: white;
     }
@@ -214,30 +214,34 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
 	border-radius: @border-radius;
     }
     &.trainable {
+        @slow-transition: 1s;
 	max-width: @trainable-card-width;
 	.card-image {
 	    width: 49.5%;
-            @slow-transition: 1s;
             transition: width @slow-transition, height @slow-transition, border-width @slow-transition;
         }
-        figure:hover, figure:focus {
-            .card-image {
-                width: 0;
-                border-width: 0;
+        figure {
+            &:hover {
+                .card-image {
+                    width: 9%;
+                }
+	        .card-image {
+                    &:hover {
+                        width: 90%;
+	                border-width: 1.5px;
+                    }
+	        }
             }
-	    .card-image:hover, .card-image:focus {
-                width: 98%;
-                max-width: 534px;
-	        border-width: 1.5px;
-	    }
         }
     }
     .card-image {
         background-color: rgba(255, 255, 255, 0.8);
+        box-sizing: border-box;
 	height: @card-height;
 	display: inline-block;
 	background-size: auto 100%;
 	background-position: center center;
+        background-repeat: no-repeat;
 	border: 1.5px solid;
 	border-radius: @border-radius;
 	width: 100%;
@@ -260,6 +264,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
 	.member-name {
 	    color: white;
             -webkit-text-stroke: 1px @color;
+	    font-style: italic;
             .text-3d-border(@color);
 	}
     }
@@ -403,6 +408,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     h2 {
 	transform: rotate(-6deg);
 	margin-top: -10px;
+	font-style: italic;
         .text-3d-border(white);
     }
     &:hover, &:focus {

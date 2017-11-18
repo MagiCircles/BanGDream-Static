@@ -8,3 +8,11 @@ function loadCard() {
 	});
     });
 }
+
+function loadSongItem() {
+    let height = $('.song-info .song-title-section').height();
+    if (height > 0) {
+        $('.song-info .top-item .song-image').css('max-height', height);
+    }
+    loadAlliTunesData();
+}

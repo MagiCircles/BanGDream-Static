@@ -92,6 +92,13 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     padding: 13px;
 }
 
+#sidebar-wrapper {
+    font-size: 0.8em;
+    [class^=flaticon] {
+        font-size: 1.2em;
+    }
+}
+
 /******************************************/
 /* User Colors */
 /******************************************/
@@ -110,6 +117,12 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
 .panel-Pure { .panel-simple-variant(@pureColor); }
 .panel-Happy { .panel-simple-variant(@happyColor); }
 .panel-main { .panel-simple-variant(@mainColor); }
+
+a.panel {
+    &:hover {
+        text-decoration: none;
+    }
+}
 
 .alert-simple-variant(@color) {
     .alert-variant(lighten(@color, 30%), lighten(@color, 20%), white);

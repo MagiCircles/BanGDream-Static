@@ -92,12 +92,6 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     padding: 13px;
 }
 
-#carousel-latest-news {
-    margin: auto;
-    width: 100%;
-    max-width: 800px;
-}
-
 #sidebar-wrapper {
     font-size: 0.8em;
     [class^=flaticon] {
@@ -185,6 +179,39 @@ a.panel {
 &.jumbotron-Pure { .jumbotron_per_color(@pureColor); }
 &.jumbotron-Happy { .jumbotron_per_color(@happyColor); }
 &.jumbotron-main { .jumbotron_per_color(@mainColor) }
+
+/******************************************/
+/* Single pages */
+/******************************************/
+
+/* Index */
+
+#carousel-latest-news {
+    margin: auto;
+    width: 100%;
+    max-width: 800px;
+}
+
+.right_character, .left_character {
+    position: fixed;
+    bottom: -5%;
+    width: 35%;
+    z-index: -10;
+}
+
+.right_character {
+    right: -5%;
+}
+
+.left_character {
+    left: -5%;
+}
+
+@media (max-width: 992px) {
+    .right_character, .left_character {
+        display: none;
+    }
+}
 
 /******************************************/
 /* MagiCollections Elements */

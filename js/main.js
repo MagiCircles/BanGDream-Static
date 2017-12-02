@@ -8,3 +8,20 @@ function loadCard() {
 	});
     });
 }
+
+function loadCardInList() {
+    var swap = function() {
+        var newSource = $(this).data('trained');
+        $(this).data('trained', $(this).attr('src'));
+        $(this).attr('src', newSource);
+    }
+    $('.card-solo').hover(swap, swap);
+}
+
+function loadSongItem() {
+    let height = $('.song-info .song-title-section').height();
+    if (height > 0) {
+        $('.song-info .top-item .song-image').css('max-height', height);
+    }
+    loadAlliTunesData();
+}

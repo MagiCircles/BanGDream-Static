@@ -92,6 +92,13 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     padding: 13px;
 }
 
+#sidebar-wrapper {
+    font-size: 0.8em;
+    [class^=flaticon] {
+        font-size: 1.2em;
+    }
+}
+
 /******************************************/
 /* User Colors */
 /******************************************/
@@ -110,6 +117,12 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
 .panel-Pure { .panel-simple-variant(@pureColor); }
 .panel-Happy { .panel-simple-variant(@happyColor); }
 .panel-main { .panel-simple-variant(@mainColor); }
+
+a.panel {
+    &:hover {
+        text-decoration: none;
+    }
+}
 
 .alert-simple-variant(@color) {
     .alert-variant(lighten(@color, 30%), lighten(@color, 20%), white);
@@ -166,6 +179,39 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
 &.jumbotron-Pure { .jumbotron_per_color(@pureColor); }
 &.jumbotron-Happy { .jumbotron_per_color(@happyColor); }
 &.jumbotron-main { .jumbotron_per_color(@mainColor) }
+
+/******************************************/
+/* Single pages */
+/******************************************/
+
+/* Index */
+
+#carousel-latest-news {
+    margin: auto;
+    width: 100%;
+    max-width: 800px;
+}
+
+.right_character, .left_character {
+    position: fixed;
+    bottom: -5%;
+    width: 35%;
+    z-index: -10;
+}
+
+.right_character {
+    right: -5%;
+}
+
+.left_character {
+    left: -5%;
+}
+
+@media (max-width: 992px) {
+    .right_character, .left_character {
+        display: none;
+    }
+}
 
 /******************************************/
 /* MagiCollections Elements */
@@ -352,13 +398,15 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
 	}
     }
 
-    .about-table {
-	max-width: 800px;
-	margin: auto;
-	td:last-child {
-	    text-align: right;
+}
+
+
+.about-table {
+    max-width: 800px;
+    margin: auto;
+    td:last-child {
+	text-align: right;
 	}
-    }
 }
 
 .member-info {
@@ -443,4 +491,62 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     margin-top: -120px;
     width: 130%;
     max-width: none;
+}
+
+[data-field="event"], [data-field="gacha"] {
+    td:last-child img {
+        width: 300px;
+    }
+}
+
+[data-field="cards"], [data-field="songs"] {
+    td:last-child img {
+        width: 140px;
+    }
+}
+
+.top-item .song-image {
+    max-height: none;
+}
+
+.song-info {
+    .top-item {
+        max-width: 800px;
+        margin: auto;
+        padding-bottom: 0;
+        h1 {
+            font-size: 3em;
+        }
+        .band {
+            width: 200px;
+            max-width: 100%;
+        }
+    }
+}
+
+.song-small-note, .song-big-note {
+    vertical-align: bottom;
+}
+
+.song-small-note {
+    width: 8px;
+}
+
+.song-big-note {
+    width: 15px;
+}
+
+.songwriters-details {
+    display: inline-block;
+    text-align: left;
+}
+
+.add_buttons a[href^="/songs/add/"] {
+    padding: 20px 10px;
+    border-radius: 10px;
+    font-size: 1em;
+    h3 {
+        margin: 0;
+        font-size: 1em;
+    }
 }

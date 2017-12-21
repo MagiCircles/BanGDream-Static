@@ -4,6 +4,7 @@
 /* @import "../../../env/lib/python2.7/site-packages/magi/static/less/main.less"; */
 /* @import "../../../env/lib/python2.7/site-packages/magi/static/less/mixins/buttons.less"; */
 /* @import "../../../env/lib/python2.7/site-packages/magi/static/less/mixins/a.less"; */
+/* @import "../../../env/lib/python2.7/site-packages/magi/static/less/mixins/well.less"; */
 /* @import "../bower/bootstrap/less/mixins/panels.less"; */
 /* @import "../bower/bootstrap/less/mixins/alerts.less"; */
 
@@ -11,6 +12,7 @@
 @import "main.less";
 @import "mixins/buttons.less";
 @import "mixins/a.less";
+@import "mixins/well.less";
 @import "/static/bower/bootstrap/less/mixins/panels.less";
 @import "/static/bower/bootstrap/less/mixins/alerts.less";
 
@@ -178,7 +180,17 @@ a.panel {
 &.jumbotron-Cool { .jumbotron_per_color(@coolColor); }
 &.jumbotron-Pure { .jumbotron_per_color(@pureColor); }
 &.jumbotron-Happy { .jumbotron_per_color(@happyColor); }
-&.jumbotron-main { .jumbotron_per_color(@mainColor) }
+&.jumbotron-main { .jumbotron_per_color(@mainColor); }
+
+.well_per_color(@color) {
+    .well-variant(@color, white);
+    background-image: linear-gradient(290deg, lighten(@color, 10%), @color);
+}
+.well-Power { .well_per_color(@powerColor); }
+.well-Cool { .well_per_color(@coolColor); }
+.well-Pure { .well_per_color(@pureColor); }
+.well-Happy { .well_per_color(@happyColor); }
+.well-main { .well_per_color(@mainColor); }
 
 /******************************************/
 /* Single pages */
@@ -216,14 +228,6 @@ a.panel {
 /******************************************/
 /* MagiCollections Elements */
 /******************************************/
-
-.account {
-    padding-right: 60px;
-    padding-left: 60px;
-    h3 {
-	font-size: 70px;
-    }
-}
 
 @card-width: 545px;
 @trainable-card-width: 800px;
@@ -406,7 +410,12 @@ a.panel {
     margin: auto;
     td:last-child {
 	text-align: right;
-	}
+    }
+}
+
+.default-account + .about-table {
+    max-width : 100%;
+    margin-bottom: 20px;
 }
 
 .member-info {

@@ -2,19 +2,11 @@
 
 /* Uncomment these lines when you need to compile LESS -> CSS */
 /* @import "../../../env/lib/python2.7/site-packages/magi/static/less/main.less"; */
-/* @import "../../../env/lib/python2.7/site-packages/magi/static/less/mixins/buttons.less"; */
-/* @import "../../../env/lib/python2.7/site-packages/magi/static/less/mixins/a.less"; */
-/* @import "../../../env/lib/python2.7/site-packages/magi/static/less/mixins/well.less"; */
-/* @import "../bower/bootstrap/less/mixins/panels.less"; */
-/* @import "../bower/bootstrap/less/mixins/alerts.less"; */
+/* @import "../../../env/lib/python2.7/site-packages/magi/static/less/mixins/magicircles.less"; */
 
 /* Comment these lines when you need to compile LESS -> CSS */
 @import "main.less";
-@import "mixins/buttons.less";
-@import "mixins/a.less";
-@import "mixins/well.less";
-@import "/static/bower/bootstrap/less/mixins/panels.less";
-@import "/static/bower/bootstrap/less/mixins/alerts.less";
+@import "mixins/magicircles.less";
 
 /******************************************/
 /* Variables */
@@ -47,6 +39,8 @@ html {
     .setup-sidebar(@mainColor);
     .magicircles(@mainColor, @secondaryColor);
 }
+
+@import "generated_colors.less";
 
 body {
     font-family: 'Karla', sans-serif;
@@ -100,97 +94,6 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
         font-size: 1.2em;
     }
 }
-
-/******************************************/
-/* User Colors */
-/******************************************/
-
-@powerColor: #FF2D54;
-@coolColor: #4057E3;
-@pureColor: #44C527;
-@happyColor: #FF8400;
-
-.panel-simple-variant(@color) {
-     .panel-variant(lighten(@color, 20%), #fff, @color, lighten(@color, 20%));
-}
-
-.panel-Power { .panel-simple-variant(@powerColor); }
-.panel-Cool { .panel-simple-variant(@coolColor); }
-.panel-Pure { .panel-simple-variant(@pureColor); }
-.panel-Happy { .panel-simple-variant(@happyColor); }
-.panel-main { .panel-simple-variant(@mainColor); }
-
-a.panel {
-    &:hover {
-        text-decoration: none;
-    }
-}
-
-.alert-simple-variant(@color) {
-    .alert-variant(lighten(@color, 30%), lighten(@color, 20%), white);
-}
-
-.alert-Power { .alert-simple-variant(@powerColor); }
-.alert-Cool { .alert-simple-variant(@coolColor); }
-.alert-Pure { .alert-simple-variant(@pureColor); }
-.alert-Happy { .alert-simple-variant(@happyColor); }
-.alert-main { .alert-simple-variant(darken(@mainColor, 20%)); }
-
-.btn-Power { .button-variant(white, @powerColor, darken(@powerColor, 2%)); }
-.btn-Cool { .button-variant(white, @coolColor, darken(@coolColor, 2%)); }
-.btn-Pure { .button-variant(white, @pureColor, darken(@pureColor, 2%)); }
-.btn-Happy { .button-variant(white, @happyColor, darken(@happyColor, 2%)); }
-
-.btn-link-Power { .button-variant(@powerColor, @transparent, @transparent); }
-.btn-link-Cool { .button-variant(@coolColor, @transparent, @transparent); }
-.btn-link-Pure { .button-variant(@pureColor, @transparent, @transparent); }
-.btn-link-Happy { .button-variant(@happyColor, @transparent, @transparent); }
-
-.a-Power { .a-variant(@powerColor); }
-.a-Cool { .a-variant(@coolColor); }
-.a-Pure { .a-variant(@pureColor); }
-.a-Happy { .a-variant(@happyColor); }
-
-.progress-bar-variant(@color) {
-    background-color: @color;
-}
-
-.progress-bar-Power { .progress-bar-variant(@powerColor); }
-.progress-bar-Cool { .progress-bar-variant(@coolColor); }
-.progress-bar-Pure { .progress-bar-variant(@pureColor); }
-.progress-bar-Happy { .progress-bar-variant(@happyColor); }
-
-.jumbotron_per_color(@color) {
-    background-image: linear-gradient(290deg, lighten(@color, 10%), @color);
-    color: white;
-    .a-variant(lighten(@color, 30%));
-    h1, h2, h3, h4, h5, h6 {
-	color: @color;
-	color: white;
-    }
-    &+div:not(.empty) table td {
-	background-color: @color;
-	&:hover, &:focus {
-	    background-color: darken(@color, 10%);
-	}
-    }
-}
-
-&.jumbotron-Power { .jumbotron_per_color(@powerColor); }
-&.jumbotron-Cool { .jumbotron_per_color(@coolColor); }
-&.jumbotron-Pure { .jumbotron_per_color(@pureColor); }
-&.jumbotron-Happy { .jumbotron_per_color(@happyColor); }
-&.jumbotron-main { .jumbotron_per_color(@mainColor); }
-
-.well_per_color(@color) {
-    .well-variant(@color, white);
-    background-image: linear-gradient(290deg, lighten(@color, 10%), @color);
-}
-.well-Power { .well_per_color(@powerColor); }
-.well-Cool { .well_per_color(@coolColor); }
-.well-Pure { .well_per_color(@pureColor); }
-.well-Happy { .well_per_color(@happyColor); }
-.well-main { .well_per_color(@mainColor); }
 
 /******************************************/
 /* Single pages */
@@ -404,7 +307,6 @@ a.panel {
 
 }
 
-
 .about-table {
     max-width: 800px;
     margin: auto;
@@ -413,9 +315,8 @@ a.panel {
     }
 }
 
-.default-account + .about-table {
+.panel-default-account .about-table {
     max-width : 100%;
-    margin-bottom: 20px;
 }
 
 .member-info {
@@ -558,4 +459,9 @@ a.panel {
         margin: 0;
         font-size: 1em;
     }
+}
+
+#id_i_difficulty + .cuteform img {
+    width: 45px;
+    height: 45px;
 }

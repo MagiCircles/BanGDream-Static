@@ -1,3 +1,8 @@
+function loadComingSoon(tab_name, user_id, account_id, onDone) {
+    onDone('<div class="alert alert-info text-center"><i class="flaticon-idolized"></i> ' + gettext('Coming soon') + ' <i class="flaticon-idolized"></i></div>');
+}
+
+
 function loadCard() {
     $('[data-open-tab]').each(function() {
 	$(this).unbind('click');
@@ -16,6 +21,7 @@ function loadCardInList() {
         $(this).attr('src', newSource);
     }
     $('.card-solo').hover(swap, swap);
+    directAddCollectible($('.icon-card + .below-item-buttons [data-btn-name="collectiblecard"]'));
 }
 
 function loadSongItem() {

@@ -1,4 +1,9 @@
-function loadComingSoon(tab_name, user_id, account_id, onDone) {
+
+function loadProfileComingSoon(tab_name, user_id, onDone) {
+    onDone('<div class="padding20"><div class="alert alert-info text-center"><i class="flaticon-idolized"></i> ' + gettext('Coming soon') + ' <i class="flaticon-idolized"></i></div></div>');
+}
+
+function loadAccountComingSoon(tab_name, user_id, account_id, onDone) {
     onDone('<div class="alert alert-info text-center"><i class="flaticon-idolized"></i> ' + gettext('Coming soon') + ' <i class="flaticon-idolized"></i></div>');
 }
 

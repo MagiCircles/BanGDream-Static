@@ -319,6 +319,29 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     max-width : 100%;
 }
 
+.card-info {
+    tr[data-field="images"] {
+        a { .a-nodifference(); }
+	img {
+	    max-width: 150px;
+            padding-left: 3px;
+	}
+    }
+    tr[data-field="transparents"] {
+        a { .a-nodifference(); }
+	img {
+	    max-width: 200px;
+            margin: 0 -20px;
+	}
+    }
+    tr[data-field="arts"] {
+        a { .a-nodifference(); }
+	img {
+            padding: 2px 0;
+	}
+    }
+}
+
 .member-info {
     max-width: 600px;
     margin: auto;

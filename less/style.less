@@ -323,21 +323,22 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     tr[data-field="images"] {
         a { .a-nodifference(); }
 	img {
-	    max-width: 150px;
+	    width: 150px;
             padding-left: 3px;
 	}
     }
     tr[data-field="transparents"] {
         a { .a-nodifference(); }
 	img {
-	    max-width: 240px;
+	    width: 240px;
             margin: 0 -20px;
+            max-height: none;
 	}
     }
     tr[data-field="arts"] {
         a { .a-nodifference(); }
 	img {
-            max-width: 240px;
+            width: 240px;
             padding: 2px 0;
 	}
     }
@@ -375,7 +376,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     }
     tr[data-field="band"] {
 	img {
-	    max-width: 200px;
+	    width: 200px;
 	    margin: -16px 0;
 	}
     }
@@ -435,7 +436,10 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     max-width: none;
 }
 
-[data-field="event"], [data-field="gacha"] {
+[data-field="event"], [data-field="gacha"],
+.event-info [data-field$="_image"],
+.gacha-info [data-field$="_image"]
+{
     td:last-child img {
         width: 300px;
     }

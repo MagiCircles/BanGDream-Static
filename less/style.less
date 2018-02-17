@@ -71,6 +71,9 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     &.japanese {
 	font-weight: bold;
     }
+    &.btn, &.btn-lg {
+        font-size: 25px;
+    }
 }
 
 .btn-lg small, .btn-xl small {
@@ -106,7 +109,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
 
 #sidebar-wrapper {
     font-size: 0.8em;
-    [class^=flaticon] {
+    .form-control [class^=flaticon] {
         font-size: 1.2em;
     }
 }
@@ -147,6 +150,8 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
 /******************************************/
 /* MagiCollections Elements */
 /******************************************/
+
+/* Card */
 
 @card-width: 545px;
 @trainable-card-width: 800px;
@@ -327,6 +332,13 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     width: 10%;
 }
 
+@media (max-width: 768px) {
+    [data-item="collectiblecard"] {
+        padding-left: 1px;
+        padding-right: 1px;
+    }
+}
+
 .collection-table .table-headers-sections th {
     font-family: 'Teko', monospace;
 }
@@ -367,6 +379,8 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
 	}
     }
 }
+
+/* Member */
 
 .member-info {
     max-width: 600px;
@@ -425,14 +439,6 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     }
 }
 
-
-@media (max-width: 768px) {
-    [data-item="collectiblecard"] {
-        padding-left: 1px;
-        padding-right: 1px;
-    }
-}
-
 #sidebar-wrapper {
     #id_i_school_year + .cuteform, #id_trainable + .cuteform {
 	font-size: 0.8em;
@@ -451,6 +457,8 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     }
 }
 
+/* Donate */
+
 .donate-image {
     //max-width: 300px;
     margin: auto;
@@ -459,6 +467,8 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     width: 130%;
     max-width: none;
 }
+
+/* Generic */
 
 [data-field="event"], [data-field="gacha"],
 .event-info [data-field$="_image"],
@@ -474,6 +484,8 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
         width: 140px;
     }
 }
+
+/* Song */
 
 .top-item .song-image {
     max-height: none;
@@ -524,4 +536,18 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
 #id_i_difficulty + .cuteform img {
     width: 45px;
     height: 45px;
+}
+
+/* Account */
+
+[data-item="account"] {
+    [data-btn-name="version"] img {
+        display: inline-block;
+        margin-top: -2px;
+        margin-left: 5px;
+        width: 25px;
+        height: 25px;
+        border: 1px solid white;
+        border-radius: 50%;
+    }
 }

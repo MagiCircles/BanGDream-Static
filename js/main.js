@@ -26,7 +26,6 @@ function loadCardInList() {
         $(this).attr('src', newSource);
     }
     $('.card-solo').hover(swap, swap);
-    directAddCollectible($('.icon-card + .below-item-buttons [data-btn-name="collectiblecard"]'));
 }
 
 function loadSongItem() {

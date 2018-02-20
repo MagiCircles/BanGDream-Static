@@ -537,6 +537,48 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     height: 45px;
 }
 
+[data-header-field="screenshot"] {
+    text-align: right;
+}
+
+[data-header-field="difficulty"], [data-header-field="full_combo"],  {
+    text-align: center;
+}
+
+.collection-table [data-item="playedsong"] {
+    text-align: left;
+    [data-field="image"], [data-field="difficulty"], [data-field="screenshot"] {
+        img {
+            width: auto;
+            max-width: 90%;
+        }
+    }
+    [data-field="image"] {
+        width: 8%;
+    }
+    [data-field="difficulty"] {
+        width: 15%;
+        text-align: center;
+        img {
+            width: 45px;
+        }
+    }
+    [data-field="full_combo"] {
+        text-align: center;
+        font-size: 1.4em;
+    }
+    .screenshot_preview {
+        height: 63px + 16;
+        width: 100%;
+        margin: -8px -8px -8px 8px;
+        background-size: 100%;
+        background-position: center center;
+    }
+    [data-field="buttons"] {
+        width: 5%;
+    }
+}
+
 /* Account */
 
 [data-item="account"] {

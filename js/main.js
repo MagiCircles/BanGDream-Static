@@ -41,6 +41,22 @@ function cuteformclearOne(cuteform) {
     cuteform.next('.cuteform').remove();
 }
 
+function loadCollecticleCardForm() {
+    var trainedCheckbox = $('[data-form-name$="_collectiblecard"] #id_trained');
+    var preferUntrainedCheckbox = $('[data-form-name$="_collectiblecard"] #id_prefer_untrained');
+    var preferUntrainedField = preferUntrainedCheckbox.closest('.form-group');
+    function showHidePreferUntrained() {
+        if (trainedCheckbox.prop('checked') === true) {
+            preferUntrainedField.show();
+        } else {
+            preferUntrainedCheckbox.prop('checked', false);
+            preferUntrainedField.hide();
+        }
+    }
+    showHidePreferUntrained();
+    trainedCheckbox.change(showHidePreferUntrained);
+}
+
 function loadCardForm() {
     var form = $('[data-form-name="edit_card"], [data-form-name="add_card"]');
     function showVariable(k, v) {

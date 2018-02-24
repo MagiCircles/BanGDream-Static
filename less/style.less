@@ -151,6 +151,45 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
 /* MagiCollections Elements */
 /******************************************/
 
+/* Generic */
+
+[data-field="event"], [data-field="gacha"],
+.event-info [data-field$="_image"],
+.gacha-info [data-field$="_image"]
+{
+    td:last-child img {
+        width: 300px;
+    }
+}
+
+[data-field="cards"], [data-field="songs"] {
+    td:last-child img {
+        width: 140px;
+    }
+}
+
+.container-for-generic-form {
+    #id_i_band + .cuteform {
+        img:not([data-cuteform-text="---------"]) {
+            height: 70px;
+            width: auto;
+        }
+    }
+    #id_main_card, #id_secondary_card, #id_center {
+        &+.cuteform img.cuteform-elt:not([data-cuteform-text="---------"]) {
+            width: 50px;
+            border-radius: 8px;
+        }
+    }
+    #id_event {
+        &+.cuteform img:not([data-cuteform-text="---------"]) {
+            height: 60px;
+            width: auto;
+            border-radius: 8px;
+        }
+    }
+}
+
 /* Card */
 
 @card-width: 545px;
@@ -465,23 +504,6 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     margin-top: -120px;
     width: 130%;
     max-width: none;
-}
-
-/* Generic */
-
-[data-field="event"], [data-field="gacha"],
-.event-info [data-field$="_image"],
-.gacha-info [data-field$="_image"]
-{
-    td:last-child img {
-        width: 300px;
-    }
-}
-
-[data-field="cards"], [data-field="songs"] {
-    td:last-child img {
-        width: 140px;
-    }
 }
 
 /* Song */

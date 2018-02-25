@@ -175,21 +175,26 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
     }
 }
 
-.container-for-generic-form {
-    #id_i_band + .cuteform {
+.container-for-generic-form, #cuteform-modal {
+    [data-cuteform-name="id_i_band"], [data-cuteform-name="id_member_band"] {
         img:not([data-cuteform-text="---------"]) {
-            height: 70px;
+            height: 100px;
             width: auto;
         }
     }
-    #id_main_card, #id_secondary_card, #id_center {
-        &+.cuteform img.cuteform-elt:not([data-cuteform-text="---------"]) {
-            width: 50px;
+    [data-cuteform-name="id_main_card"], [data-cuteform-name="id_secondary_card"], [data-cuteform-name="id_center"] {
+        img.cuteform-elt:not([data-cuteform-text="---------"]) {
+            width: 70px!important;
+            height: auto;
             border-radius: 8px;
         }
+        [data-cuteform-text="---------"] {
+            width: 60px;
+            height: auto;
+        }
     }
-    #id_event {
-        &+.cuteform img:not([data-cuteform-text="---------"]) {
+    [data-cuteform-name="id_event"] {
+        img:not([data-cuteform-text="---------"]) {
             height: 60px;
             width: auto;
             border-radius: 8px;

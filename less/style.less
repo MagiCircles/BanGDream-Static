@@ -390,6 +390,26 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
 
 }
 
+@media (max-width: 890px) {
+    .icon-card, .icon-card + .btn-group {
+        margin: 0 -15px;
+        width: 130%;
+        img {
+            width: 130%;
+        }
+    }
+    .icon-card + .btn-group {
+        display: block;
+        margin-bottom: 20px;
+        & > .btn {
+            display: block;
+            width: 100%;
+            border-radius: 5px!important;
+            margin: 2px 0;
+        }
+    }
+}
+
 .collection-table [data-item="collectiblecard"] [data-field="image"] {
     width: 10%;
 }

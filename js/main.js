@@ -64,6 +64,9 @@ function loadCardForm() {
         form.find('#id_i_skill_' + v).closest('.form-group').show();
     }
     function onSkillChange() {
+        if (!all_variables == 'undefined' || !special_cases_variables || !special_cases_template || !variables_per_skill_type || !template_per_skill_type) {
+            return;
+        }
         let selectedSkill = form.find('#id_i_skill_type').val();
         let selectedSideSkill = form.find('#id_i_side_skill_type').val();
         let selectedSpecial = form.find('#id_i_skill_special').val();
@@ -81,7 +84,7 @@ function loadCardForm() {
             form.find('#id_i_skill_special').closest('.form-group').show();
         }
         // Main skill
-        if (selectedSkill != '') {
+        if (selectedSkill) {
             // Show side if main is selected
             form.find('#id_i_side_skill_type').closest('.form-group').show();
             // Show template + variables

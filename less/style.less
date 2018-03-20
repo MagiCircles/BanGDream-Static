@@ -1,4 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Teko:700|Karla');
+@font-face {
+	font-family: 'Softsoul';
+	src: url("Softsoul.eot");
+	src: url("Softsoul.eot#iefix") format("embedded-opentype"),
+	url("Softsoul.woff") format("woff"),
+	url("Softsoul.ttf") format("truetype"),
+	url("Softsoul.svg") format("svg");
+	font-weight: bold;
+	font-style: normal;
+}
+@import url('https://fonts.googleapis.com/css?family=Karla');
 
 /* Uncomment these lines when you need to compile LESS -> CSS */
 // @import "../../../env/lib/python2.7/site-packages/magi/static/less/main.less";
@@ -63,14 +73,10 @@ body.shortcut- {
     }
 }
 
-h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
-    &:not(.japanese) {
-	font-family: 'Teko', monospace;
+h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-table .table-headers-sections th {
+	font-family: 'Softsoul', monospace;
 	font-weight: normal;
-    }
-    &.japanese {
-	font-weight: bold;
-    }
+  font-style: italic;
     &.btn, &.btn-lg {
         font-size: 25px;
     }
@@ -419,10 +425,6 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl {
         padding-left: 1px;
         padding-right: 1px;
     }
-}
-
-.collection-table .table-headers-sections th {
-    font-family: 'Teko', monospace;
 }
 
 .about-table {

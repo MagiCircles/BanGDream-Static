@@ -1,15 +1,3 @@
-@font-face {
-	font-family: 'Softsoul';
-	src: url("Softsoul.eot");
-	src: url("Softsoul.eot#iefix") format("embedded-opentype"),
-	url("Softsoul.woff") format("woff"),
-	url("Softsoul.ttf") format("truetype"),
-	url("Softsoul.svg") format("svg");
-	font-weight: bold;
-	font-style: normal;
-}
-@import url('https://fonts.googleapis.com/css?family=Karla');
-
 /* Uncomment these lines when you need to compile LESS -> CSS */
 // @import "../../../env/lib/python2.7/site-packages/magi/static/less/main.less";
 // @import "../../../env/lib/python2.7/site-packages/magi/static/less/mixins/magicircles.less";
@@ -17,6 +5,18 @@
 /* Comment these lines when you need to compile LESS -> CSS */
 @import "main.less";
 @import "mixins/magicircles.less";
+
+@font-face {
+	font-family: 'Softsoul';
+	src: url("../css/SoftSoul.eot");
+	src: url("../css/SoftSoul.eot#iefix") format("embedded-opentype"),
+	url("../css/SoftSoul.woff") format("woff"),
+	url("../css/SoftSoul.ttf") format("truetype"),
+	url("../css/SoftSoul.svg") format("svg");
+	font-weight: bold;
+	font-style: normal;
+}
+@import url('https://fonts.googleapis.com/css?family=Karla');
 
 /******************************************/
 /* Variables */
@@ -74,12 +74,7 @@ body.shortcut- {
 }
 
 h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-table .table-headers-sections th {
-	font-family: 'Softsoul', monospace;
-	font-weight: normal;
-  font-style: italic;
-    &.btn, &.btn-lg {
-        font-size: 25px;
-    }
+    font-weight: bold;
 }
 
 .btn-lg small, .btn-xl small {
@@ -356,6 +351,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
 	right: 3px;
     }
     .member-name {
+        font-family: 'SoftSoul', 'Impact', sans-serif;
 	transform: rotate(-3deg);
 	text-align: right;
 	bottom: -5px;
@@ -435,8 +431,22 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
     }
 }
 
-.panel-default-account .about-table {
-    max-width : 100%;
+#profile #username {
+    font-family: 'SoftSoul', 'Impact', sans-serif;
+    font-style: italic;
+}
+
+.panel-default-account {
+    .username, .level {
+        font-family: 'SoftSoul', 'Impact', sans-serif;
+        font-style: italic;
+    }
+    .about-table {
+        max-width : 100%;
+    }
+    .account-tabs li {
+        width: auto!important;
+    }
 }
 
 .card-info {
@@ -510,6 +520,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
 	max-width: 100%;
     }
     h2 {
+        font-family: 'SoftSoul', 'Impact', sans-serif;
 	transform: rotate(-6deg);
 	margin-top: -10px;
 	font-style: italic;
@@ -519,12 +530,6 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
 	opacity: 0.8;
 	text-decoration: none;
 	color: lighten(@mainColor, 10%);
-    }
-}
-
-#sidebar-wrapper {
-    #id_i_school_year + .cuteform {
-	      font-size: 0.8em;
     }
 }
 
@@ -564,6 +569,10 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
         padding-bottom: 0;
         h1 {
             font-size: 3em;
+            .romaji {
+                font-family: 'SoftSoul', 'Impact', sans-serif;
+                font-style: italic;
+            }
         }
         .band {
             width: 200px;

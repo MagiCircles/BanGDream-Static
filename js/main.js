@@ -155,6 +155,8 @@ function loadEventGacha() {
         $.each(fields_per_version, function(_, field_name) {
             let field = $('[data-field="' + prefix + field_name + '"]');
             if (field_name != 'image') {
+                field.find('td').first().css('border-left', '1px solid #ddd');
+                field.find('td').last().css('border-right', '1px solid #ddd');
                 if (toggle) {
                     field.toggle(animation);
                 } else {
@@ -170,6 +172,10 @@ function loadEventGacha() {
     if (typeof versions_prefixes != 'undefined' && typeof fields_per_version != 'undefined') {
         $.each(versions_prefixes, function(version, prefix) {
             let field = $('[data-field="' + prefix + 'image"]');
+            let last_field = $('[data-field^="' + prefix + '"]').last();
+            if (last_field.data('field') == prefix + 'image') {
+                return ;
+            }
             field.find('th').first().append('&nbsp;&nbsp;<span class="glyphicon glyphicon-triangle-bottom"></span>');
             field.css('cursor', 'pointer');
             field.unbind('click');

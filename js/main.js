@@ -44,6 +44,20 @@ function loadCardInList() {
         onOriginChange();
         $('#sidebar-wrapper #id_origin').change(function () { onOriginChange('slow') });
     }
+
+    // Show/hide include_cameos when member_id is set
+    function onMemberChange(animation) {
+        if ($('#sidebar-wrapper #id_member_id').val() != "") {
+            $('#sidebar-wrapper #id_member_includes_cameos').closest('.form-group').show(animation);
+        } else {
+            $('#sidebar-wrapper #id_member_includes_cameos').closest('.form-group').hide(animation);
+            $('#sidebar-wrapper #id_member_includes_cameos').prop('checked', false);
+        }
+    }
+    if ($('#sidebar-wrapper #id_member_id').length > 0 && $('#sidebar-wrapper #id_member_includes_cameos').length > 0) {
+        onMemberChange();
+        $('#sidebar-wrapper #id_member_id').change(function () { onMemberChange('slow') });
+    }
 }
 
 // Card form

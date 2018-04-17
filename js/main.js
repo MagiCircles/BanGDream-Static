@@ -23,12 +23,27 @@ function loadCard() {
 
 // Card list
 function loadCardInList() {
+    // Swap icons
     var swap = function() {
         var newSource = $(this).data('trained');
         $(this).data('trained', $(this).attr('src'));
         $(this).attr('src', newSource);
     }
     $('.card-solo').hover(swap, swap);
+
+    // Show/hide limited when origin = gacha
+    function onOriginChange(animation) {
+        if ($('#sidebar-wrapper #id_origin').val() == 'is_gacha') {
+            $('#sidebar-wrapper #id_is_limited').closest('.form-group').show(animation);
+        } else {
+            $('#sidebar-wrapper #id_is_limited').closest('.form-group').hide(animation);
+            $('#sidebar-wrapper #id_is_limited').val('1');
+        }
+    }
+    if ($('#sidebar-wrapper #id_origin').length > 0 && $('#sidebar-wrapper #id_is_limited').length > 0) {
+        onOriginChange();
+        $('#sidebar-wrapper #id_origin').change(function () { onOriginChange('slow') });
+    }
 }
 
 // Card form

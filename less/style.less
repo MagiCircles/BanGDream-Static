@@ -121,7 +121,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
         box-shadow: 0px 0px 30px 2px rgba(0, 0, 0, 0.2);
         position: relative;
     }
-    .home-site-logo, h2 {
+    .home-site-logo, h2.home-site-description {
         width: 140%;
         max-width: 120%;
         margin-left: -10%;
@@ -172,6 +172,10 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
             }
         }
     }
+    #togglebutton {
+        z-index: 3;
+        display: none;
+    }
     .activities-container, .home-transition {
         padding: 0;
         position: relative;
@@ -182,6 +186,9 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
         background: white;
         border-bottom-right-radius: 16px;
         border-bottom-left-radius: 16px;
+        .row {
+            margin: 0;
+        }
     }
     .activity {
         background: transparent;
@@ -211,6 +218,9 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
 
 @media(max-width: 991px) {
     .shortcut- {
+        .about-card {
+            display: none;
+        }
 	.collection-page-wrapper {
 	    .home-wrapper {
 		background-size: 100%;
@@ -227,7 +237,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
 		}
 	    }
 	}
-        .home-site-logo, h2 {
+        .home-site-logo, h2.home-site-description {
             width: 100%;
             margin-left: auto;
         }

@@ -161,7 +161,7 @@ DirectorLite.prototype.setupControls = function(mid) {
 
 DirectorLite.prototype.reshapeWithResizeEvent = function(event) {
     // We obviously can't play nice here, so play dirty.
-    var container = document.getElementById("dlcontainer");
+    var container = this.canvas.parentNode;
     // If we only use the width/height, this is well-defined.
     var rect = container.getBoundingClientRect();
 

@@ -262,6 +262,37 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
     }
 }
 
+/* Model viewer */
+
+#dltarget {
+    background-size: cover;
+    background-position: 15% center;
+    background-image: url(../img/bg_live2d_viewer.png);
+    border-radius: 10px;
+}
+
+#dlcontrols {
+    position: absolute; 
+    top: 32px;
+    left: 0;
+    text-align: left;
+    padding: 10px;
+
+    &.dlhidden > div {
+        display: none;
+    }
+    &.dlexpanded > div {
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.70);
+        border-radius: 8px;
+        margin-top: 8px;
+    }
+}
+
+#freeModal #dlcontrols {
+    top: 0;
+}
+
 /******************************************/
 /* MagiCollections Elements */
 /******************************************/

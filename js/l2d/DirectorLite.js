@@ -2,14 +2,6 @@ var LAppDefine = {
     DEBUG_LOG : true,
     DEBUG_MOUSE_LOG : false, 
     
-    // used for portrait mode
-    VIEW_MAX_SCALE_P : 8.0,
-    VIEW_MIN_SCALE_P : 2.5,
-
-    // used for landscape mode
-    VIEW_MAX_SCALE_L : 4.0,
-    VIEW_MIN_SCALE_L : 1.2,
-
     VIEW_LOGICAL_LEFT : -1,
     VIEW_LOGICAL_RIGHT : 1,
 
@@ -23,6 +15,9 @@ var LAppDefine = {
     // Decided through trial and error.
     AUTO_RESIZE_VERTICAL_DANGER_ZONE: 100,
     AUTO_RESIZE_MIN_ASPECT_RATIO: 9/16,
+
+    // Sort of a happy medium between a tall model (Tomoe) and a short model (Ako).
+    ZOOM_ADJUST_MIN_VALUE: 0.35,
 }
 
 function DirectorLite(initParams) {    
@@ -51,7 +46,7 @@ function DirectorLite(initParams) {
 
     this.models = [];
 
-    this.prepareCanvas(initParams.canvasName);
+    this.prepareCanvas(initParams.canvasName, initParams.callbackOnInitFailure);
     this.startDraw();
 
     if (initParams.autoResize) {
@@ -79,13 +74,13 @@ DirectorLite.prototype.terminate = function() {
     Live2DFramework.setPlatformManager(null);
 }
 
-DirectorLite.prototype.shouldAddAdvancedControls = function() {
-    return localStorage.getItem("dl_developer") === "true";
-}
-
 DirectorLite.prototype.loadModel = function(fromFile, callback) {
     var that = this;
     var mdl = new LAppModel();
+    mdl.enableBreathing = true;
+    mdl.enableSwaying = true;
+    mdl.enableBlinking = true;
+
     this.models.push(mdl);
     var mid = this.models.length - 1;
 
@@ -98,14 +93,15 @@ DirectorLite.prototype.loadModel = function(fromFile, callback) {
         }
 
         that.setupControls(mid);
-        that.controls.style.display = "block";
+        that.controls.style.display = null;
     });
 }
 
 DirectorLite.prototype.setupControls = function(mid) {
     var that = this;
     var copy = this.controls.querySelector("#dltemplate").cloneNode(true);
-    copy.style.display = "block";
+    copy.id = null;
+    copy.style.display = null;
 
     copy.querySelector(".dlname").textContent = this.models[mid].modelSetting.json.name;
 
@@ -142,6 +138,24 @@ DirectorLite.prototype.setupControls = function(mid) {
         that.models[mid].startMotion(e.target.value, 0);
     });
 
+    copy.querySelector(".dlvariance").addEventListener("change", function(e) {
+        that.models[mid].enableSwaying = e.target.checked;
+    });
+    copy.querySelector(".dlbreathe").addEventListener("change", function(e) {
+        that.models[mid].enableBreathing = e.target.checked;
+    });
+    copy.querySelector(".dlblink").addEventListener("change", function(e) {
+        that.models[mid].enableBlinking = e.target.checked;
+    });
+    copy.querySelector(".dlloopmotions").addEventListener("change", function(e) {
+        that.models[mid].repeatsMotions = e.target.checked;
+    });
+    copy.querySelector(".dltoggleupdates").addEventListener("click", function(e) {
+        var m = that.models[mid];
+        m.isFrozen = (!m.isFrozen);
+        e.target.textContent = m.isFrozen? e.target.dataset.stringUnpause : e.target.dataset.stringPause;
+    });
+
     this.controls.appendChild(copy);
 }
 
@@ -152,8 +166,12 @@ DirectorLite.prototype.reshapeWithResizeEvent = function(event) {
     var rect = container.getBoundingClientRect();
 
     var width = rect.width;
-    var height = window.innerHeight - LAppDefine.AUTO_RESIZE_VERTICAL_DANGER_ZONE;
+    var height = Math.min(window.innerHeight, LAppDefine.MAX_CANVAS_INTERNAL_SIZE) - LAppDefine.AUTO_RESIZE_VERTICAL_DANGER_ZONE;
     var ar = width / height;
+
+    if (LAppDefine.DEBUG_LOG) {
+        console.log("RESHAPE: ASPECT RATIO:" + ar)
+    }
 
     // Things get weird when the window is really thin, so cap it to
     // 9:16 (widescreen but held sideways).
@@ -173,19 +191,26 @@ DirectorLite.prototype.reshapeWithResizeEvent = function(event) {
         this.canvas.height = LAppDefine.MAX_CANVAS_INTERNAL_SIZE;
         this.canvas.width = LAppDefine.MAX_CANVAS_INTERNAL_SIZE * ar;
     }
+
+    // Then fix the position of the gear button.
+    // CSS puts it at 0px relative to the container, so if the container is wider than
+    // the canvas, the gear button is misplaced.
+    rect = container.getBoundingClientRect();
+    var r2 = this.canvas.getBoundingClientRect();
+    var offsetLeft = (rect.width - r2.width) / 2;
+    this.controls.style.left = offsetLeft + "px";
     
     // Update Live2D's matrices.
     this.reshape();
 }
 
-DirectorLite.prototype.reshape = function(passRect) {
+DirectorLite.prototype.reshape = function() {
     if (LAppDefine.DEBUG_LOG) {
         console.log("reshape");
     }
 
-    var rect = passRect || this.canvas.getBoundingClientRect();
-    var width = rect.width;
-    var height = rect.height;
+    var width = this.canvas.width;
+    var height = this.canvas.height;
 
     var ratio = height / width;
     var left = -0.5;
@@ -198,17 +223,11 @@ DirectorLite.prototype.reshape = function(passRect) {
                                      LAppDefine.VIEW_LOGICAL_MAX_BOTTOM,
                                      LAppDefine.VIEW_LOGICAL_MAX_TOP); 
 
-    if (this.canvas.height > this.canvas.width) {
-        this.viewMatrix.setMaxScale(LAppDefine.VIEW_MAX_SCALE_P);
-        this.viewMatrix.setMinScale(LAppDefine.VIEW_MIN_SCALE_P);
-    } else {
-        this.viewMatrix.setMaxScale(LAppDefine.VIEW_MAX_SCALE_L);
-        this.viewMatrix.setMinScale(LAppDefine.VIEW_MIN_SCALE_L);
-    }
+    this.viewMatrix.setMaxScale(4.0 * ratio);
+    this.viewMatrix.setMinScale(1.4 * ratio);
 
-    // Bug: This resets the user's zoom level.
-    // Workaround: Don't resize the window.
-    this.scaleModel(0, 0, 2.0)
+    // Resizing unsets the user's zoom level, unfortunately.
+    this.scaleModel(0, 0, 1.0)
 
     this.projMatrix = new L2DMatrix44();
     this.projMatrix.multScale(1, (width / height));
@@ -218,21 +237,18 @@ DirectorLite.prototype.reshape = function(passRect) {
     this.deviceToScreen.multScale(2 / width, -2 / width);
 }
 
-DirectorLite.prototype.prepareCanvas = function(named) {
+DirectorLite.prototype.prepareCanvas = function(named, webglFail) {
     this.canvas = document.getElementById(named);
 
     if (this.canvas.addEventListener) {
         var mouseEvent = this.mouseEvent.bind(this)
         var touchEvent = this.touchEvent.bind(this)
 
+        // Firefox sends "wheel" events. There are a few people I can think of who would
+        // be angry at me if this didn't work, so register both events.
+        // ...Well, actually, they are angry at me regardless. But we would like it to work anyway.
         this.canvas.addEventListener("mousewheel", mouseEvent, false);
-        this.canvas.addEventListener("click", mouseEvent, false);
-
-        this.canvas.addEventListener("mousedown", mouseEvent, false);
-        this.canvas.addEventListener("mousemove", mouseEvent, false);
-
-        this.canvas.addEventListener("mouseup", mouseEvent, false);
-        this.canvas.addEventListener("mouseout", mouseEvent, false);
+        this.canvas.addEventListener("wheel", mouseEvent, false);
 
         this.canvas.addEventListener("touchstart", touchEvent, false);
         this.canvas.addEventListener("touchend", touchEvent, false);
@@ -243,7 +259,10 @@ DirectorLite.prototype.prepareCanvas = function(named) {
     this.reshape();
     this.gl = this.getWebGLContext();
     if (!this.gl) {
-        l2dError("Failed to create WebGL context.");
+        if (webglFail) {
+            webglFail(100);
+        }
+
         return;
     }
     
@@ -305,83 +324,26 @@ DirectorLite.prototype.draw = function() {
     MatrixStack.pop();
 }
 
-DirectorLite.prototype.scaleModel = function(scale) {   
-    var isMaxScale = this.viewMatrix.isMaxScale();
-    var isMinScale = this.viewMatrix.isMinScale();
-    
-    this.viewMatrix.adjustScale(0, 0, scale);
-}
+DirectorLite.prototype.scaleModel = function(scale) {
+    // adjustScale has been modified to return the absolute scale value
+    // that was set.
+    var absoluteScaleNow = this.viewMatrix.adjustScale(0, 0, scale);
 
-DirectorLite.prototype.modelTurnHead = function(event)
-{
-    this.drag = true;
-    
-    var rect = event.target.getBoundingClientRect();
-    if (LAppDefine.DEBUG_LOG) {
-        console.log(rect)
-    }
-    
-    var sx = this.transformScreenX(event.clientX - rect.left);
-    var sy = this.transformScreenY(event.clientY - rect.top);
-    var vx = this.transformViewX(event.clientX - rect.left);
-    var vy = this.transformViewY(event.clientY - rect.top);
-    
-    if (LAppDefine.DEBUG_MOUSE_LOG) {
-        console.log("onMouseDown device( x:" + event.clientX + " y:" + event.clientY + " ) view( x:" + vx + " y:" + vy + ")");
-    }
+    // Gradually shift the model down as we zoom. The idea is to
+    // eventually focus on the head as we get to max scale, so
+    // we aren't awkwardly zooming into her chest.
+    var mmin = this.viewMatrix.getMinScale();
+    var mmax = this.viewMatrix.getMaxScale();
 
-    this.lastMouseX = sx;
-    this.lastMouseY = sy;
+    var where = (absoluteScaleNow - mmin) / (mmax - mmin);
+    where = Math.min(1.0, Math.max(where, 0.0));
 
-    this.dragMgr.setPoint(vx, vy); 
-}
-
-DirectorLite.prototype.dragModel = function(event)
-{    
-    var rect = event.target.getBoundingClientRect();
-    
-    var sx = this.transformScreenX(event.clientX - rect.left);
-    var sy = this.transformScreenY(event.clientY - rect.top);
-    var vx = this.transformViewX(event.clientX - rect.left);
-    var vy = this.transformViewY(event.clientY - rect.top);
-
-    var px = (event.clientX - rect.left) / rect.width;
-    var py = (event.clientY - rect.top) / rect.height;
-    px = px - 0.5;
-    py = ((1 - py) * 2) - 1;
-    
-    if (LAppDefine.DEBUG_MOUSE_LOG) {
-        console.log("onMouseMove device( x:" + event.clientX + " y:" + event.clientY + " ) view( x:" + px + " y:" + py + ")");
-    }
-
-    if (this.drag) {
-        this.models[0].modelMatrix.setX(px - 0.5);
-        this.models[0].modelMatrix.setY(py + 0.7);
+    // FIXME: multi-model
+    if (this.models[0]) {
+        this.models[0].modelMatrix.setY(Math.max((1 - where) * 0.7, 
+            LAppDefine.ZOOM_ADJUST_MIN_VALUE));
     }
 }
-
-DirectorLite.prototype.followPointer = function(event)
-{    
-    var rect = event.target.getBoundingClientRect();
-    
-    var sx = this.transformScreenX(event.clientX - rect.left);
-    var sy = this.transformScreenY(event.clientY - rect.top);
-    var vx = this.transformViewX(event.clientX - rect.left);
-    var vy = this.transformViewY(event.clientY - rect.top);
-    
-    if (LAppDefine.DEBUG_MOUSE_LOG) {
-        console.log("onMouseMove device( x:" + event.clientX + " y:" + event.clientY + " ) view( x:" + vx + " y:" + vy + ")");
-    }
-
-    if (this.drag) {
-        this.lastMouseX = sx;
-        this.lastMouseY = sy;
-
-        this.dragMgr.setPoint(vx, vy); 
-    }
-}
-
-
 
 DirectorLite.prototype.lookFront = function()
 {   
@@ -396,73 +358,36 @@ DirectorLite.prototype.lookFront = function()
 DirectorLite.prototype.mouseEvent = function(e) {
     e.preventDefault();
     
-    if (e.type == "mousewheel") {
+    if (e.type == "mousewheel" || e.type == "wheel") {
         var mybox = this.canvas.getBoundingClientRect();
         if (e.clientX < mybox.left || mybox.right < e.clientX || 
             e.clientY < mybox.top || mybox.bottom < e.clientY) {
             return;
         }
         
-        if (e.wheelDelta > 0) this.scaleModel(1.1); 
+        if (e.wheelDelta > 0 || (-e.deltaY) > 0) this.scaleModel(1.1); 
         else this.scaleModel(0.9); 
-
-    } else if (e.type == "mousedown") {
-
-        if("button" in e && e.button != 0) return;
-        
-        this.modelTurnHead(e);
-        
-    } else if (e.type == "mousemove") {
-        
-        this.dragModel(e);
-        
-    } else if (e.type == "mouseup") {
-        
-        
-        if("button" in e && e.button != 0) return;
-        
-        this.lookFront();
-        
-    } else if (e.type == "mouseout") {
-        
-        this.lookFront();
-        
     }
-
 }
 
 
 DirectorLite.prototype.touchEvent = function(e)
 {
-    e.preventDefault();
-    
-    var touch = e.touches[0];
-    
-    if (e.type == "touchstart") {
-        if (e.touches.length == 1) this.modelTurnHead(touch);
-        // onClick(touch);
-        
-    } else if (e.type == "touchmove") {
-        followPointer(touch);
-        
+    if (e.type == "touchmove") {
         if (e.touches.length == 2) {
+            e.preventDefault();
+
             var touch1 = e.touches[0];
             var touch2 = e.touches[1];
             
             var len = Math.pow(touch1.pageX - touch2.pageX, 2) + Math.pow(touch1.pageY - touch2.pageY, 2);
-            if (thisRef.oldLen - len < 0) this.scaleModel(1.025); 
+            if (this.oldLen - len < 0) this.scaleModel(1.025); 
             else this.scaleModel(0.975); 
             
-            thisRef.oldLen = len;
+            this.oldLen = len;
         }
-        
-    } else if (e.type == "touchend") {
-        this.lookFront();
     }
 }
-
-
-
 
 DirectorLite.prototype.transformViewX = function(deviceX)
 {
@@ -504,3 +429,15 @@ DirectorLite.prototype.getWebGLContext = function()
     }
     return null;
 };
+
+function DLToggleControls(e) {
+    var ctl = e.target.parentNode;
+    if (ctl.tagName == "BUTTON") {
+        ctl = ctl.parentNode;
+    }
+    if (ctl.className === "dlexpanded") {
+        ctl.className = "dlhidden";
+    } else {
+        ctl.className = "dlexpanded";
+    }
+}

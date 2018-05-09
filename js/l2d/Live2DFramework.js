@@ -1464,6 +1464,7 @@ L2DViewMatrix.prototype.adjustScale     = function(cx/*float*/, cy/*float*/, sca
     L2DMatrix44.mul(tr3, this.tr, this.tr);
     L2DMatrix44.mul(tr2, this.tr, this.tr);
     L2DMatrix44.mul(tr1, this.tr, this.tr);
+    return targetScale;
 }
 
 //============================================================

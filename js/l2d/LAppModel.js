@@ -11,6 +11,13 @@ function LAppModel()
     this.modelHomeDir = "";
     this.modelSetting = null;
     this.tmpMatrix = [];
+
+    this.enableBlinking = false;
+    this.enableSwaying = false;
+    this.enableBreathing = false;
+
+    this.repeatsMotions = false;
+    this.lastMotionName = null;
 }
 
 LAppModel.prototype = new L2DBaseModel();
@@ -202,6 +209,10 @@ LAppModel.prototype.update = function()
     var timeMSec = UtSystem.getUserTimeMSec() - this.startTimeMSec;
     var timeSec = timeMSec / 1000.0;
     var t = timeSec * 2 * Math.PI; 
+
+    if (this.mainMotionManager.isFinished() && this.repeatsMotions && this.lastMotionName) {
+        this.startMotion(this.lastMotionName, 0);
+    }
     
     //-----------------------------------------------------------------		
     
@@ -213,7 +224,7 @@ LAppModel.prototype.update = function()
     var update = this.mainMotionManager.updateParam(this.live2DModel); 
     if (!update) {
         
-        if(this.eyeBlink != null) {
+        if(this.eyeBlink != null && this.enableBlinking) {
             this.eyeBlink.updateParam(this.live2DModel);
         }
     }
@@ -232,32 +243,34 @@ LAppModel.prototype.update = function()
     }
 
     
-    
+    // Look-at adjustment    
     this.live2DModel.addToParamFloat("PARAM_ANGLE_X", this.dragX * 30, 1); 
     this.live2DModel.addToParamFloat("PARAM_ANGLE_Y", this.dragY * 30, 1);
     this.live2DModel.addToParamFloat("PARAM_ANGLE_Z", (this.dragX * this.dragY) * -30, 1);
 
-    
-    
     this.live2DModel.addToParamFloat("PARAM_BODY_ANGLE_X", this.dragX*10, 1); 
 
-    
-    
     this.live2DModel.addToParamFloat("PARAM_EYE_BALL_X", this.dragX, 1); 
     this.live2DModel.addToParamFloat("PARAM_EYE_BALL_Y", this.dragY, 1);
 
 
-    
-    this.live2DModel.addToParamFloat("PARAM_ANGLE_X", 
-                                     Number((15 * Math.sin(t / 6.5345))), 0.5);
-    this.live2DModel.addToParamFloat("PARAM_ANGLE_Y", 
-                                     Number((8 * Math.sin(t / 3.5345))), 0.5);
-    this.live2DModel.addToParamFloat("PARAM_ANGLE_Z", 
-                                     Number((10 * Math.sin(t / 5.5345))), 0.5);
-    this.live2DModel.addToParamFloat("PARAM_BODY_ANGLE_X", 
-                                     Number((4 * Math.sin(t / 15.5345))), 0.5);
-    this.live2DModel.setParamFloat("PARAM_BREATH", 
-                                   Number((0.5 + 0.5 * Math.sin(t / 3.2345))), 1);
+    // Sway
+    if (this.enableSwaying) {
+        this.live2DModel.addToParamFloat("PARAM_ANGLE_X", 
+                                         Number((15 * Math.sin(t / 6.5345))), 0.5);
+        this.live2DModel.addToParamFloat("PARAM_ANGLE_Y", 
+                                         Number((8 * Math.sin(t / 3.5345))), 0.5);
+        this.live2DModel.addToParamFloat("PARAM_ANGLE_Z", 
+                                         Number((10 * Math.sin(t / 5.5345))), 0.5);
+        this.live2DModel.addToParamFloat("PARAM_BODY_ANGLE_X", 
+                                         Number((4 * Math.sin(t / 15.5345))), 0.5);
+    }
+
+    // Breathe
+    if (this.enableBreathing) {
+        this.live2DModel.setParamFloat("PARAM_BREATH", 
+                                       Number((0.5 + 0.5 * Math.sin(t / 3.2345))), 1);
+    }
     
     
     if (this.physics != null)
@@ -318,6 +331,8 @@ LAppModel.prototype.startMotion = function(name, no, priority)
             console.error("Failed to motion.");
         return;
     }
+
+    this.lastMotionName = name;
 
     if (priority == LAppDefine.PRIORITY_FORCE) 
     {

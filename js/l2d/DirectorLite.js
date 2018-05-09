@@ -155,6 +155,12 @@ DirectorLite.prototype.setupControls = function(mid) {
         m.isFrozen = (!m.isFrozen);
         e.target.textContent = m.isFrozen? e.target.dataset.stringUnpause : e.target.dataset.stringPause;
     });
+    copy.querySelector(".dlscreenshot").addEventListener("click", function(e) {
+        that.screenshot(false);
+    });
+    copy.querySelector(".dlscreenshotbg").addEventListener("click", function(e) {
+        that.screenshot(true);
+    });
 
     this.controls.appendChild(copy);
 }
@@ -429,6 +435,47 @@ DirectorLite.prototype.getWebGLContext = function()
     }
     return null;
 };
+
+DirectorLite.prototype.screenshot = function(withBackground) {
+    // Make sure the GL canvas has content. The default behaviour is to clear it
+    // automatically between frames.
+    this.draw();
+
+    var img;
+    if (withBackground) {
+        var compo = document.createElement("canvas");
+        compo.width = this.canvas.width;
+        compo.height = this.canvas.height;
+
+        var ctx = compo.getContext("2d");
+        var bg = document.getElementById("secretBackgroundForScreenshots");
+
+        // What we're doing here is imitating #dltarget's CSS rules to draw the background
+        // onto the secondary canvas.
+        var scalefactor = Math.max(compo.width / bg.width, compo.height / bg.height);
+
+        var ww = bg.width * scalefactor;
+        var hh = bg.height * scalefactor;
+
+        // Assumes a background-position of "15% center". If you ever touch that rule in style.less,
+        // change it here too or screenshots will be subtly different.
+        ctx.drawImage(bg, Math.min(0, (compo.width - ww) * 0.15), Math.min(0, (compo.height - hh) / 2), ww, hh);
+        ctx.drawImage(this.canvas, 0, 0);
+        img = compo.toDataURL();
+    } else {
+        img = this.canvas.toDataURL();
+    }
+
+    var a = document.createElement("a");
+    a.download = "screenshot.png";
+    a.href = img;
+    a.style.display = "none";
+
+    // Some browsers refuse to trigger a download unless the link is attached to the dom.
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
 
 function DLToggleControls(e) {
     var ctl = e.target.parentNode;

@@ -164,8 +164,11 @@ DirectorLite.prototype.setupControls = function(mid) {
     });
     copy.querySelector(".dltoggleupdates").addEventListener("click", function(e) {
         var m = that.models[mid];
+        var icon = copy.querySelector(".dlpausebutton");
         m.isFrozen = (!m.isFrozen);
-        e.target.textContent = m.isFrozen? e.target.dataset.stringUnpause : e.target.dataset.stringPause;
+        icon.className = m.isFrozen ?
+            icon.className.replace(/\pause\b/,'play')
+            : icon.className.replace(/\play\b/,'pause');
     });
     copy.querySelector(".dlscreenshot").addEventListener("click", function(e) {
         that.screenshot(false);

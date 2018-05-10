@@ -1,5 +1,5 @@
 var LAppDefine = {
-    DEBUG_LOG : true,
+    DEBUG_LOG : false,
     DEBUG_MOUSE_LOG : false, 
     
     VIEW_LOGICAL_LEFT : -1,
@@ -20,7 +20,18 @@ var LAppDefine = {
     ZOOM_ADJUST_MIN_VALUE: 0.35,
 }
 
-function DirectorLite(initParams) {    
+function DirectorLite(initParams) {
+    // Users can enable debug logging by setting the DLDeveloper key in local storage to:
+    //   1: debug logs, 2: mouse event logs, 3: both.
+    var userLogSettings = window.localStorage.getItem("DLDeveloper");
+    userLogSettings = userLogSettings? parseInt(userLogSettings) : 0;
+    if (userLogSettings & 0x1) {
+        LAppDefine.DEBUG_LOG = true;
+    }
+    if (userLogSettings & 0x2) {
+        LAppDefine.DEBUG_MOUSE_LOG = true;
+    }
+
     var fsops = new ZipLoader();
     Live2DFramework.setPlatformManager(fsops)
 
@@ -34,6 +45,7 @@ function DirectorLite(initParams) {
     this.viewMatrix = null; /*new L2DViewMatrix();*/
     this.projMatrix = null; /*new L2DMatrix44()*/
     this.deviceToScreen = null; /*new L2DMatrix44();*/
+    this.savedUserScale = null;
 
     this.drag = false; 
     this.oldLen = 0;    
@@ -232,8 +244,12 @@ DirectorLite.prototype.reshape = function() {
     this.viewMatrix.setMaxScale(4.0 * ratio);
     this.viewMatrix.setMinScale(1.4 * ratio);
 
-    // Resizing unsets the user's zoom level, unfortunately.
-    this.scaleModel(0, 0, 1.0)
+    if (this.savedUserScale) {
+        this.scaleModel(this.savedUserScale * ratio);
+    } else {
+        // Set it to the minimum.
+        this.scaleModel(0);
+    }
 
     this.projMatrix = new L2DMatrix44();
     this.projMatrix.multScale(1, (width / height));
@@ -330,7 +346,7 @@ DirectorLite.prototype.draw = function() {
     MatrixStack.pop();
 }
 
-DirectorLite.prototype.scaleModel = function(scale) {
+DirectorLite.prototype.scaleModel = function(scale, dontsave) {
     // adjustScale has been modified to return the absolute scale value
     // that was set.
     var absoluteScaleNow = this.viewMatrix.adjustScale(0, 0, scale);
@@ -348,6 +364,12 @@ DirectorLite.prototype.scaleModel = function(scale) {
     if (this.models[0]) {
         this.models[0].modelMatrix.setY(Math.max((1 - where) * 0.7, 
             LAppDefine.ZOOM_ADJUST_MIN_VALUE));
+    }
+
+    // Save a normalized scale value. We'll use it in reshape to restore the user
+    // zoom level.
+    if (!dontsave) {
+        this.savedUserScale = absoluteScaleNow / (this.canvas.height / this.canvas.width);
     }
 }
 

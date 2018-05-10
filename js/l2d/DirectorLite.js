@@ -58,6 +58,10 @@ function DirectorLite(initParams) {
 
     this.models = [];
 
+    if (initParams.overrideDangerZoneHeight !== undefined) {
+        LAppDefine.AUTO_RESIZE_VERTICAL_DANGER_ZONE = initParams.overrideDangerZoneHeight;
+    }
+
     this.prepareCanvas(initParams.canvasName, initParams.callbackOnInitFailure);
     this.startDraw();
 

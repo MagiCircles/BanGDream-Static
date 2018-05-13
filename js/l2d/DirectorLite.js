@@ -237,6 +237,8 @@ DirectorLite.prototype.reshape = function() {
     var width = this.canvas.width;
     var height = this.canvas.height;
 
+    this.gl.viewport(0, 0, width, height);
+
     var ratio = height / width;
     var left = -0.5;
     var right = 0.5;
@@ -285,8 +287,9 @@ DirectorLite.prototype.prepareCanvas = function(named, webglFail) {
     }
 
     this.dragMgr = new L2DTargetPoint();
-    this.reshape();
     this.gl = this.getWebGLContext();
+    this.reshape();
+
     if (!this.gl) {
         if (webglFail) {
             webglFail(100);

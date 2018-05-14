@@ -625,6 +625,25 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
     }
 }
 
+[data-header-field="skill"], td[data-field="skill_type"] {
+    min-width: 400px;
+}
+[data-header-field="skill"], td[data-field="skill_type"], th[data-header-field="skill_type"],
+td[data-field$="_min"], th[data-header-field$="_min"] {
+    border-left: 1px solid #ddd;
+}
+
+.collection-table td[data-field="skill_type"] {
+    text-align: left;
+}
+.current-card_list {
+    .table-headers-sections th {
+        &:not(:first-child) {
+            border-left: 1px solid #ddd;
+        }
+    }
+}
+
 /* Member */
 
 .member-info {

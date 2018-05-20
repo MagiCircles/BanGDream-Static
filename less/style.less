@@ -660,28 +660,18 @@ td[data-field$="_min"], th[data-header-field$="_min"] {
 	width: 55%;
 	text-align: right;
     }
-    tr[data-field="description"] {
-	td, th {
-	    vertical-align: top;
-	}
-	th {
-	    padding-top: 17px;
-	}
-	td:last-child {
-	    text-align: justify;
-	}
-    }
     tr[data-field="astrological_sign"] {
 	img {
 	    opacity: 0.6;
 	}
     }
-    tr[data-field="band"] {
+}
+
+tr[data-field="band"] {
 	img {
 	    width: 200px;
 	    margin: -16px 0;
 	}
-    }
 }
 
 .member {
@@ -837,5 +827,60 @@ td[data-field$="_min"], th[data-header-field$="_min"] {
         height: 25px;
         border: 1px solid white;
         border-radius: 50%;
+    }
+}
+
+/* Area / Area items */
+
+.area, .area_see_all {
+    .a-nodifference();
+    display: block;
+    text-align: center;
+    h5 {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px 15px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        font-size: 1.4em;
+        transition: background @transition;
+        width: 220px;
+        display: inline-block;
+    }
+    &:hover, &:focus {
+        h5 {
+            background: white;
+        }
+    }
+}
+
+.area_back_to_gallery {
+    .a-nodifference();
+    display: inline-block;
+    background: rgba(230, 230, 230, 0.8);
+    padding: 6px 10px;
+    border-radius: 10px;
+    transition: background @transition;
+    border: 1px solid transparent;
+    h5 {
+        font-size: 1.2em;
+        .flaticon-back {
+            font-size: 0.8em;
+        }
+    }
+    &:hover, &:focus {
+        background: white;
+        border: 1px solid #ccc;
+    }
+}
+
+.item_quantity {
+    background: rgba(0, 0, 0, 0.65);
+    padding: 6px 10px;
+    margin: 8px 0 20px 0;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    &.collectibleitem {
+        text-align: right;
     }
 }

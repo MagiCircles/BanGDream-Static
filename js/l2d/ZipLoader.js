@@ -89,10 +89,20 @@ function ZipLoader() {
     this._filesystem = {}
 }
 
-ZipLoader.prototype.mountArchiveAtURL = function(url, fsRoot, ready)
-{
+ZipLoader.prototype.mountArchiveAtURL = function(url, fsRoot, ready) {
     var that = this;
     zip.createReader(new zip.HttpReader(url), function(reader) {
+        that._filesystem[fsRoot] = new ZipFSCache(reader);
+        if (ZIPLOADER_DEBUG) {
+            console.log("ZipPlatformManager mounted an archive")
+        }
+        ready();
+    });
+}
+
+ZipLoader.prototype.mountArchiveBlob = function(blob, fsRoot, ready) {
+    var that = this;
+    zip.createReader(new zip.BlobReader(blob), function(reader) {
         that._filesystem[fsRoot] = new ZipFSCache(reader);
         if (ZIPLOADER_DEBUG) {
             console.log("ZipPlatformManager mounted an archive")

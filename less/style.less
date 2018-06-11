@@ -602,26 +602,19 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
 }
 
 .card-info {
-    tr[data-field="images"] {
+    tr[data-field="images"], tr[data-field="transparents"], tr[data-field="arts"], tr[data-field="chibis"] {
         a { .a-nodifference(); }
-	img {
-	    width: 150px;
-            padding-left: 3px;
-	}
-    }
-    tr[data-field="transparents"] {
-        a { .a-nodifference(); }
-	img {
-	    width: 240px;
+        img {
+            max-width: 50%;
+            height: auto;
             max-height: none;
-	}
+            box-sizing: border-box;
+            margin: 0 -4px;
+            padding: 0 5px;
+        }
     }
-    tr[data-field="arts"] {
-        a { .a-nodifference(); }
-	img {
-            width: 240px;
-            padding: 2px 0;
-	}
+    tr[data-field="chibis"] img {
+        max-width: 33.3333%;
     }
 }
 

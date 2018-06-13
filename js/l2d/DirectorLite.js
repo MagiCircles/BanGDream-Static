@@ -40,6 +40,9 @@ function DirectorLite(initParams) {
     this.gl = null;
     this.canvas = null;
     this.controls = document.getElementById(initParams.controlName);
+    if (window.localStorage.getItem("DLShowUserPackageUI")) {
+        this.controls.querySelector(".dldevelopercontrols").style.display = null;
+    }
 
     this.dragMgr = null; /*new L2DTargetPoint();*/ 
     this.viewMatrix = null; /*new L2DViewMatrix();*/
@@ -79,10 +82,7 @@ function DirectorLite(initParams) {
 }
 
 DirectorLite.prototype.terminate = function() {
-    for (var i = 0; i < this.models.length; ++i) {
-        this.models[i].release(this.gl);
-    }
-    this.models = [];
+    this.unloadAllModels();
     this.isTerminating = true;
     window.removeEventListener("resize", this.reshapeCallout);
 
@@ -113,9 +113,19 @@ DirectorLite.prototype.loadModel = function(fromFile, callback) {
     });
 }
 
+DirectorLite.prototype.unloadAllModels = function() {
+    for (var i = 0; i < this.models.length; ++i) {
+        this.models[i].release(this.gl);
+    }
+    this.models = [];
+}
+
 DirectorLite.prototype.setupControls = function(mid) {
     var that = this;
-    var copy = this.controls.querySelector("#dltemplate").cloneNode(true);
+    var template = this.controls.querySelector("#dltemplate");
+    var dest = template.parentNode;
+
+    var copy = template.cloneNode(true);
     copy.id = null;
     copy.style.display = null;
 
@@ -133,25 +143,27 @@ DirectorLite.prototype.setupControls = function(mid) {
     exprContainer.addEventListener("change", function(e) {
         that.models[mid].setExpression(e.target.value);
     });
+    that.models[mid].setExpression(exprContainer.value);
 
-    var didSelectDefaultMotion = false;
     var motionsContainer = copy.querySelector(".dlmotions");
+    var o = document.createElement("option");
+    o.textContent = "--------";
+    o.value = "";
+    motionsContainer.appendChild(o);
+
     for (var motionName in this.models[mid].modelSetting.json.motions) {
         if (this.models[mid].modelSetting.json.motions.hasOwnProperty(motionName)) {
-            var o = document.createElement("option");
+            o = document.createElement("option");
             o.textContent = motionName.split(".")[0];
             o.value = motionName;
 
             motionsContainer.appendChild(o);
-
-            if (!didSelectDefaultMotion && motionName.startsWith("idle")) {
-                didSelectDefaultMotion = true;
-                motionsContainer.value = motionName;
-            }
         }
     }
     motionsContainer.addEventListener("change", function(e) {
-        that.models[mid].startMotion(e.target.value, 0);
+        if (e.target.value) {
+            that.models[mid].startMotion(e.target.value, 0);
+        }
     });
 
     copy.querySelector(".dlvariance").addEventListener("change", function(e) {
@@ -181,7 +193,7 @@ DirectorLite.prototype.setupControls = function(mid) {
         that.screenshot(true);
     });
 
-    this.controls.appendChild(copy);
+    dest.appendChild(copy);
 }
 
 DirectorLite.prototype.reshapeWithResizeEvent = function(event) {
@@ -509,6 +521,20 @@ DirectorLite.prototype.screenshot = function(withBackground) {
     document.body.removeChild(a);
 }
 
+function DLRestartModelWithUserPackage(inputId) {
+    var fs = document.getElementById(inputId).files;
+    if (!fs.length) {
+        alert("Please place a package in the file input before loading.");
+        return;
+    }
+
+    var file = fs[0];
+    DL.unloadAllModels();
+    Live2DFramework.getPlatformManager().mountArchiveBlob(file, "dev", function() {
+        DL.loadModel("dev:director.model.json");
+    });
+}
+
 function DLToggleControls(e) {
     var ctl = e.target.parentNode;
     if (ctl.tagName == "BUTTON") {
@@ -519,4 +545,17 @@ function DLToggleControls(e) {
     } else {
         ctl.className = "dlexpanded";
     }
+}
+
+function DLJustEnableUserPackages() {
+    var word;
+    if (window.localStorage.getItem("DLShowUserPackageUI")) {
+        window.localStorage.removeItem("DLShowUserPackageUI");
+        word = "Disabled";
+    } else {
+        window.localStorage.setItem("DLShowUserPackageUI", 1);
+        word = "Enabled";
+    }
+    console.log("[DirectorLite] " + word + " the ability to upload user packages.");
+    console.log("[DirectorLite] Please reload the page for this change to take effect. To undo the change, run this command again.");
 }

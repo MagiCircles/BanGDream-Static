@@ -7,6 +7,16 @@ function cuteformclearOne(cuteform) {
 }
 
 // *****************************************
+// Index
+
+function loadIndex() {
+    let home = $('.home-wrapper[data-hd-art]');
+    if (home.length > 0 && $(document).width() > 992) {
+        home.css('background-image', 'url(\'' + home.data('hd-art') + '\')');
+    }
+}
+
+// *****************************************
 // Cards
 
 // Card item

@@ -22,8 +22,9 @@
 /* Variables */
 /******************************************/
 
-@mainColor: #E40046;
-@secondaryColor: #F2B141;
+@mainColor: #1cae82;
+@accentColor: #2af6b1;
+@secondaryColor: #fc54ab;
 @darkColor: #666;
 
 /******************************************/
@@ -88,7 +89,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
     }
     .navbar-nav > li > a {
         [class^="flaticon-"]:not(.flaticon-more) {
-            color: @secondaryColor;
+            color: @accentColor;
         }
     }
 }
@@ -903,5 +904,12 @@ tr[data-field="band"] {
     .cos_caption {
         padding-top: 6px;
         font-weight: bold;
+    }
+}
+
+/* XXX: Hack for Pastel*Party - delete after or move to magicircles */
+#sidebar-wrapper {
+    .cuteform-elt.cuteform-selected  {
+        border-color: @accentColor;
     }
 }

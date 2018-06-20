@@ -57,16 +57,16 @@ function loadCardInList() {
 
     // Show/hide include_cameos when member_id is set
     function onMemberChange(animation) {
-        if ($('#sidebar-wrapper #id_member_id').val() != "") {
+        if ($('#sidebar-wrapper #id_member').val() != "") {
             $('#sidebar-wrapper #id_member_includes_cameos').closest('.form-group').show(animation);
         } else {
             $('#sidebar-wrapper #id_member_includes_cameos').closest('.form-group').hide(animation);
             $('#sidebar-wrapper #id_member_includes_cameos').prop('checked', false);
         }
     }
-    if ($('#sidebar-wrapper #id_member_id').length > 0 && $('#sidebar-wrapper #id_member_includes_cameos').length > 0) {
+    if ($('#sidebar-wrapper #id_member').length > 0 && $('#sidebar-wrapper #id_member_includes_cameos').length > 0) {
         onMemberChange();
-        $('#sidebar-wrapper #id_member_id').change(function () { onMemberChange('slow') });
+        $('#sidebar-wrapper #id_member').change(function () { onMemberChange('slow') });
     }
 }
 

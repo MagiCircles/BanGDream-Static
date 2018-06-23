@@ -173,7 +173,8 @@ function loadSongItem() {
 function loadEventGacha() {
     function toggleVersion(version, prefix, toggle, animation) {
         let caret = $('[data-field="' + prefix + 'image"] .glyphicon');
-        let isOpen = $('[data-field="' + prefix + 'countdown"]').length > 0;
+        let isOpen = ($('[data-field="' + prefix + 'countdown"]').length > 0
+                      || $('[data-field="' + prefix + 'rerun"] .countdown').length > 0);
         if (toggle) {
             if (caret.hasClass('glyphicon-triangle-bottom')) {
                 caret.removeClass('glyphicon-triangle-bottom');

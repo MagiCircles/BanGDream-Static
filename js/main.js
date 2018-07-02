@@ -57,16 +57,16 @@ function loadCardInList() {
 
     // Show/hide include_cameos when member_id is set
     function onMemberChange(animation) {
-        if ($('#sidebar-wrapper #id_member').val() != "") {
+        if ($('#sidebar-wrapper #id_member_band').val().startsWith('member-')) {
             $('#sidebar-wrapper #id_member_includes_cameos').closest('.form-group').show(animation);
         } else {
             $('#sidebar-wrapper #id_member_includes_cameos').closest('.form-group').hide(animation);
             $('#sidebar-wrapper #id_member_includes_cameos').prop('checked', false);
         }
     }
-    if ($('#sidebar-wrapper #id_member').length > 0 && $('#sidebar-wrapper #id_member_includes_cameos').length > 0) {
+    if ($('#sidebar-wrapper #id_member_band').length > 0 && $('#sidebar-wrapper #id_member_includes_cameos').length > 0) {
         onMemberChange();
-        $('#sidebar-wrapper #id_member').change(function () { onMemberChange('slow') });
+        $('#sidebar-wrapper #id_member_band').change(function () { onMemberChange('slow') });
     }
 }
 
@@ -228,3 +228,17 @@ function loadEventGacha() {
         });
     }
 }
+
+// *****************************************
+// Loaded in all pages
+
+function displayBandMemberFilter() {
+    $('#cuteform-modal').on('show.bs.modal', function() {
+        $('#cuteform-modal [data-cuteform-val^="member-"').last().after('<br style="display: block;"><br style="display: block;">');
+        $('#cuteform-modal [data-cuteform-val^="band-"').eq(2).after('<br style="display: block;">');
+    });
+}
+
+$(document).ready(function() {
+    displayBandMemberFilter();
+});

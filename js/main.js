@@ -14,6 +14,19 @@ function loadIndex() {
     if (home.length > 0 && $(document).width() > 992) {
         home.css('background-image', 'url(\'' + home.data('hd-art') + '\')');
     }
+    // Change width / height of all banners based on first
+    let width = $('#carousel-latest-news .item img').first().width();
+    let height = $('#carousel-latest-news .item img').first().height();
+    if (width) {
+        $('#carousel-latest-news .item:not(:first)').each(function() {
+            if ($(this).find('img').length) {
+                $(this).find('img').height(height);
+                $(this).find('img').width(width);
+            } else {
+                $(this).height(height);
+            }
+        });
+    }
 }
 
 // *****************************************

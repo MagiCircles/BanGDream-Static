@@ -15,13 +15,12 @@ function loadIndex() {
         home.css('background-image', 'url(\'' + home.data('hd-art') + '\')');
     }
     // Change width / height of all banners based on first
-    let width = $('#carousel-latest-news .item img').first().width();
-    let height = $('#carousel-latest-news .item img').first().height();
-    if (width) {
+    $('#carousel-latest-news .item img').width('100%');
+    let height = $('#carousel-latest-news .item').first().height();
+    if (height) {
         $('#carousel-latest-news .item:not(:first)').each(function() {
             if ($(this).find('img').length) {
                 $(this).find('img').height(height);
-                $(this).find('img').width(width);
             } else {
                 $(this).height(height);
             }

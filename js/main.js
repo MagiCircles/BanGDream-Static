@@ -182,6 +182,22 @@ function loadSongItem() {
 // *****************************************
 // Events / Gachas
 
+function loadEventGachaInList() {
+    // Show/hide status when version is set
+    function onMemberChange(animation) {
+        if ($('#sidebar-wrapper #id_version').val()) {
+            $('#sidebar-wrapper #id_status').closest('.form-group').show(animation);
+        } else {
+            $('#sidebar-wrapper #id_status').closest('.form-group').hide(animation);
+            $('#sidebar-wrapper #id_status').prop('checked', false);
+        }
+    }
+    if ($('#sidebar-wrapper #id_version').length > 0 && $('#sidebar-wrapper #id_status').length > 0) {
+        onMemberChange();
+        $('#sidebar-wrapper #id_version').change(function () { onMemberChange('slow') });
+    }
+}
+
 function loadEventGacha() {
     function toggleVersion(version, prefix, toggle, animation) {
         let caret = $('[data-field="' + prefix + 'image"] .glyphicon');

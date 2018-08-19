@@ -179,6 +179,19 @@ function loadSongItem() {
     loadAlliTunesData();
 }
 
+function onBandChange(form, animation) {
+    form.find('#id_special_band').closest('.form-group').hide(animation);
+    if (form.find('#id_i_band').val() == '6') {
+        form.find('#id_special_band').closest('.form-group').show(animation);
+    }
+}
+
+function loadSongForm() {
+    let form = $('[data-form-name$="_song"]');
+    onBandChange(form);
+    form.find('#id_i_band').change(function () { onBandChange(form, 'slow'); });
+}
+
 // *****************************************
 // Events / Gachas
 

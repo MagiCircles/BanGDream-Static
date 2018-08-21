@@ -285,7 +285,6 @@ function onEventTypeChange(form, animation) {
         }
         else{
         form.find('#id_i_boost_stat').closest('.form-group').hide(animation);
-        form.find('#id_i_boost_stat').val('')
         }
 }
 

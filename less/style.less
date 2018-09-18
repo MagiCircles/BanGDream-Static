@@ -336,6 +336,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
 {
     td:last-child img {
         width: 300px;
+        max-height: none;
     }
 }
 
@@ -891,6 +892,21 @@ tr[data-field="band"] {
     text-align: center;
     &.collectibleitem {
         text-align: right;
+    }
+}
+
+/* Assets */
+
+[data-item="asset"] {
+    .asset-image {
+        border-radius: 15px;
+        border: 2px solid #eee;
+    }
+}
+
+.asset-info {
+    .top-item img {
+        max-height: none;
     }
 }
 

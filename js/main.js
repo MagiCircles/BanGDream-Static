@@ -14,6 +14,18 @@ function loadIndex() {
     if (home.length > 0 && $(document).width() > 992) {
         home.css('background-image', 'url(\'' + home.data('hd-art') + '\')');
     }
+    // Change width / height of all banners based on first
+    $('#carousel-latest-news .item img').width('100%');
+    let height = $('#carousel-latest-news .item').first().height();
+    if (height) {
+        $('#carousel-latest-news .item:not(:first)').each(function() {
+            if ($(this).find('img').length) {
+                $(this).find('img').height(height);
+            } else {
+                $(this).height(height);
+            }
+        });
+    }
 }
 
 // *****************************************
@@ -183,26 +195,49 @@ function loadSongForm() {
 // *****************************************
 // Events / Gachas
 
+function loadEventGachaInList() {
+    // Show/hide status when version is set
+    function onMemberChange(animation) {
+        if ($('#sidebar-wrapper #id_version').val()) {
+            $('#sidebar-wrapper #id_status').closest('.form-group').show(animation);
+        } else {
+            $('#sidebar-wrapper #id_status').closest('.form-group').hide(animation);
+            $('#sidebar-wrapper #id_status').prop('checked', false);
+        }
+    }
+    if ($('#sidebar-wrapper #id_version').length > 0 && $('#sidebar-wrapper #id_status').length > 0) {
+        onMemberChange();
+        $('#sidebar-wrapper #id_version').change(function () { onMemberChange('slow') });
+    }
+}
+
 function loadEventGacha() {
-    function toggleVersion(version, prefix, toggle, animation) {
+    function showClose(caret, text, original_name) {
+        caret.removeClass('glyphicon-triangle-bottom');
+        caret.addClass('glyphicon-triangle-top');
+        text.text(gettext('Close'));
+    }
+    function showOpen(caret, text, original_name) {
+        caret.removeClass('glyphicon-triangle-top');
+        caret.addClass('glyphicon-triangle-bottom');
+        text.text(gettext('Open {thing}').replace('{thing}', original_name));
+    }
+    function toggleVersion(version, prefix, toggle, original_name, animation) {
         let caret = $('[data-field="' + prefix + 'image"] .glyphicon');
+        let text = $('[data-field="' + prefix + 'image"] .text-open');
         let isOpen = ($('[data-field="' + prefix + 'countdown"]').length > 0
                       || $('[data-field="' + prefix + 'rerun"] .countdown').length > 0);
         if (toggle) {
             if (caret.hasClass('glyphicon-triangle-bottom')) {
-                caret.removeClass('glyphicon-triangle-bottom');
-                caret.addClass('glyphicon-triangle-top');
+                showClose(caret, text, original_name);
             } else {
-                caret.removeClass('glyphicon-triangle-top');
-                caret.addClass('glyphicon-triangle-bottom');
+                showOpen(caret, text, original_name);
             }
         } else {
             if (isOpen) {
-                caret.removeClass('glyphicon-triangle-bottom');
-                caret.addClass('glyphicon-triangle-top');
+                showClose(caret, text, original_name);
             } else {
-                caret.removeClass('glyphicon-triangle-top');
-                caret.addClass('glyphicon-triangle-bottom');
+                showOpen(caret, text, original_name);
             }
         }
         $.each(fields_per_version, function(_, field_name) {
@@ -229,15 +264,17 @@ function loadEventGacha() {
             if (last_field.data('field') == prefix + 'image') {
                 return ;
             }
-            field.find('th').first().append('&nbsp;&nbsp;<span class="glyphicon glyphicon-triangle-bottom"></span>');
+            let original_name = field.find('th').first().text();
+            field.find('th').first().html('<h3>' + field.find('th').text() + '</h3>');
+            field.find('th').first().append('<small class="text-muted"><span class="glyphicon glyphicon-triangle-bottom"></span> <span class="text-open"></span></small>');
             field.css('cursor', 'pointer');
             field.unbind('click');
             field.click(function(e) {
                 e.preventDefault();
-                toggleVersion(version, prefix, true, 'fast');
+                toggleVersion(version, prefix, true, original_name, 'fast');
                 return false;
             });
-            toggleVersion(version, prefix, false);
+            toggleVersion(version, prefix, false, original_name);
         });
     }
 }

@@ -110,9 +110,23 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
     margin: auto;
     width: 100%;
     max-width: 800px;
+
+    .item.birthday {
+        background-size: 150%;
+        background-position-y: 30%;
+        background-position-x: 20%;
+        text-align: right;
+        .carousel-caption {
+            right: 40%;
+            left: 10%;
+            h2 {
+                text-shadow: 0px 2px 30px black;
+            }
+        }
+    }
 }
 
-.shortcut- {
+.current-activity_list[class*="shortcut-"] {
     .home-wrapper {
         background-size: 150%;
         background-position: center right;
@@ -217,7 +231,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
 }
 
 @media(max-width: 991px) {
-    .shortcut- {
+    .current-activity_list[class*="shortcut-"] {
         .about-card {
             display: none;
         }
@@ -322,6 +336,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
 {
     td:last-child img {
         width: 300px;
+        max-height: none;
     }
 }
 
@@ -355,6 +370,13 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
             width: auto;
             border-radius: 8px;
         }
+    }
+}
+
+[data-cuteform-name="id_gacha_type"] {
+    [class^="flaticon-"] {
+        font-size: 18px;
+        font-weight: normal;
     }
 }
 
@@ -673,7 +695,7 @@ tr[data-field="band"] {
     img {
 	max-width: 100%;
     }
-    h2 {
+    h3 {
         font-family: 'SoftSoul', 'Impact', sans-serif;
 	transform: rotate(-6deg);
 	margin-top: -10px;
@@ -699,15 +721,10 @@ tr[data-field="band"] {
     }
 }
 
-/* Donate */
+/* Events, gachas */
 
-.donate-image {
-    //max-width: 300px;
-    margin: auto;
-    //margin-top: -150px;
-    margin-top: -120px;
-    width: 130%;
-    max-width: none;
+#sidebar-wrapper #id_status + .cuteform .cuteform-elt {
+    margin: 0;
 }
 
 /* Song */
@@ -875,6 +892,21 @@ tr[data-field="band"] {
     text-align: center;
     &.collectibleitem {
         text-align: right;
+    }
+}
+
+/* Assets */
+
+[data-item="asset"] {
+    .asset-image {
+        border-radius: 15px;
+        border: 2px solid #eee;
+    }
+}
+
+.asset-info {
+    .top-item img {
+        max-height: none;
     }
 }
 

@@ -284,8 +284,8 @@ function loadEventGacha() {
 
 function displayBandMemberFilter() {
     $('#cuteform-modal').on('show.bs.modal', function() {
-        $('#cuteform-modal [data-cuteform-val^="member-"').last().after('<br style="display: block;"><br style="display: block;">');
-        $('#cuteform-modal [data-cuteform-val^="band-"').eq(2).after('<br style="display: block;">');
+        $('#cuteform-modal [data-cuteform-val^="member-"]').last().after('<br style="display: block;"><br style="display: block;">');
+        $('#cuteform-modal [data-cuteform-val^="band-"]').eq(2).after('<br style="display: block;">');
     });
 }
 

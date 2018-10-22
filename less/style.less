@@ -7,14 +7,14 @@
 @import "mixins/magicircles.less";
 
 @font-face {
-	font-family: 'SoftSoul';
-	src: url("Softsoul.eot");
-	src: url("Softsoul.eot#iefix") format("embedded-opentype"),
-	url("Softsoul.woff") format("woff"),
-	url("Softsoul.ttf") format("truetype"),
-	url("Softsoul.svg") format("svg");
-	font-weight: bold;
-	font-style: normal;
+    font-family: 'SoftSoul';
+    src: url("Softsoul.eot");
+    src: url("Softsoul.eot#iefix") format("embedded-opentype"),
+    url("Softsoul.woff") format("woff"),
+    url("Softsoul.ttf") format("truetype"),
+    url("Softsoul.svg") format("svg");
+    font-weight: bold;
+    font-style: normal;
 }
 @import url('https://fonts.googleapis.com/css?family=Karla');
 
@@ -127,76 +127,20 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
 }
 
 .current-activity_list[class*="shortcut-"] {
-    .home-wrapper {
-        background-size: 150%;
-        background-position: center right;
-        background-position-y: 40%;
-        background-position-x: 100%;
-        box-shadow: 0px 0px 30px 2px rgba(0, 0, 0, 0.2);
-        position: relative;
-    }
-    .home-site-logo, h2.home-site-description {
-        width: 140%;
-        max-width: 120%;
-        margin-left: -10%;
-        margin-top: 60px;
-        margin-bottom: 10px;
-    }
-    .collection-page-wrapper {
-	margin: 0;
-	.home {
-            background-image: linear-gradient(100deg, transparent, transparent, transparent, transparent, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8), transparent);
-	    .home-inner {
-                width: 40%;
-                margin-left: 50%;
-                margin-right: 10%;
-	    }
-        }
-    }
-    .about-card {
-        font-size: 2em;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        .a-nodifference();
-        opacity: 0.5;
-        color: white;
-        text-shadow: 0 0 0.2em #555, 0 0 0.2em #555, 0 0 0.2em #555, 0 0 0.2em #555, 0 0 0.2em #555, 0 0 0.2em #555, 0 0 0.2em #555;
-        transition: opacity @transition;
-        &:hover, &:focus {
-            opacity: 0.7;
-            color: white;
-        }
-    }
-    .default-index.index-not-authenticated {
-        margin-top: -10px;
-        padding-top: 30px;
-        padding-bottom: 50px;
-    }
-    .home-transition {
-        margin-top: -98px;
-        svg {
-            margin-bottom: -6px;
-            path {
-                fill: white;
-                stroke: white;
-            }
-        }
-    }
-    #togglebutton {
-        z-index: 3;
-        display: none;
-    }
+    /* .home-site-logo, h2.home-site-description { */
+    /*     width: 140%; */
+    /*     max-width: 120%; */
+    /*     margin-left: -10%; */
+    /*     margin-top: 60px; */
+    /*     margin-bottom: 10px; */
+    /* } */
     .activities-container, .home-transition {
         padding: 0;
         position: relative;
         z-index: 2;
     }
     .activities-container {
-        box-shadow: 0px 18px 30px 2px rgba(0, 0, 0, 0.1);
+        //box-shadow: 0px 18px 30px 2px rgba(0, 0, 0, 0.1);
         background: white;
         border-bottom-right-radius: 16px;
         border-bottom-left-radius: 16px;
@@ -235,22 +179,22 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
         .about-card {
             display: none;
         }
-	.collection-page-wrapper {
-	    .home-wrapper {
-		background-size: 100%;
-		background-position: center -10%;
-		background-repeat: no-repeat;
-		padding-top: 30%;
-		.home {
-		    .home-inner {
-			width: 100%;
-			padding: 0 8%;
-			margin: 0;
+        .collection-page-wrapper {
+            .home-wrapper {
+                background-size: 100%;
+                background-position: center -10%;
+                background-repeat: no-repeat;
+                padding-top: 30%;
+                .home {
+                    .home-inner {
+                        width: 100%;
+                        padding: 0 8%;
+                        margin: 0;
 
-		    }
-		}
-	    }
-	}
+                    }
+                }
+            }
+        }
         .home-site-logo, h2.home-site-description {
             width: 100%;
             margin-left: auto;
@@ -390,7 +334,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
     position: relative;
     margin: auto;
     &.trainable {
-	max-width: @trainable-card-width;
+        max-width: @trainable-card-width;
     }
 }
 
@@ -411,16 +355,16 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
     max-width: @card-width;
     overflow: hidden;
     &:hover, &:focus {
-	color: white;
+        color: white;
     }
     figure {
-	border-radius: @border-radius;
+        border-radius: @border-radius;
     }
     &.trainable {
         @slow-transition: 1s;
-	max-width: @trainable-card-width;
-	.card-image {
-	    width: 49.5%;
+        max-width: @trainable-card-width;
+        .card-image {
+            width: 49.5%;
             transition: width @slow-transition, height @slow-transition, border-width @slow-transition;
         }
         figure {
@@ -428,55 +372,55 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
                 .card-image {
                     width: 9%;
                 }
-	        .card-image {
+                .card-image {
                     &:hover {
                         width: 90%;
-	                border-width: 1.5px;
+                        border-width: 1.5px;
                     }
-	        }
+                }
             }
         }
     }
     .card-image {
         background-color: rgba(255, 255, 255, 0.8);
         box-sizing: border-box;
-	height: @card-height;
-	display: inline-block;
-	background-size: auto 100%;
-	background-position: center center;
+        height: @card-height;
+        display: inline-block;
+        background-size: auto 100%;
+        background-position: center center;
         background-repeat: no-repeat;
-	border: 1.5px solid;
-	border-radius: @border-radius;
-	width: 100%;
-	&.normal {
-	    border-top-left-radius: @border-radius;
-	    border-bottom-left-radius: @border-radius;
-	}
-	&.trained {
-	    margin-left: 1%;
-	    border-top-right-radius: @border-radius;
-	    border-bottom-right-radius: @border-radius;
-	}
+        border: 1.5px solid;
+        border-radius: @border-radius;
+        width: 100%;
+        &.normal {
+            border-top-left-radius: @border-radius;
+            border-bottom-left-radius: @border-radius;
+        }
+        &.trained {
+            margin-left: 1%;
+            border-top-right-radius: @border-radius;
+            border-bottom-right-radius: @border-radius;
+        }
     }
 
     .rarity_border_color(@color) {
-	border-color: @color;
-	.card-image {
-	    border-color: @color;
-	}
-	.member-name {
-	    color: white;
+        border-color: @color;
+        .card-image {
+            border-color: @color;
+        }
+        .member-name {
+            color: white;
             -webkit-text-stroke: 1px @color;
-	    font-style: italic;
+            font-style: italic;
             .text-3d-border(@color);
-	}
+        }
     }
 
     .per_attribute(@color) {
-	&.card-rarity-1 {
-	    background-image: linear-gradient(140deg, @color, lighten(@color, 20%), @color, lighten(@color, 20%), @color, lighten(@color, 20%), @color, lighten(@color, 20%), @color, lighten(@color, 20%), @color, lighten(@color, 20%), @color, lighten(@color, 20%), @color, lighten(@color, 20%), @color, lighten(@color, 20%));
-	    .rarity_border_color(@color);
-	}
+        &.card-rarity-1 {
+            background-image: linear-gradient(140deg, @color, lighten(@color, 20%), @color, lighten(@color, 20%), @color, lighten(@color, 20%), @color, lighten(@color, 20%), @color, lighten(@color, 20%), @color, lighten(@color, 20%), @color, lighten(@color, 20%), @color, lighten(@color, 20%), @color, lighten(@color, 20%));
+            .rarity_border_color(@color);
+        }
     }
     &.card-Power { .per_attribute(@powerColor); }
     &.card-Cool { .per_attribute(@coolColor); }
@@ -484,47 +428,47 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
     &.card-Happy { .per_attribute(@happyColor); }
 
     &.card-rarity-4 {
-	background-image: linear-gradient(140deg, #F97EE6, #FEE4F8, #F8A382, #F8C74F, #A8E651, #4CE1EE, #669EF5, #E5E5FD, #ED7DDF);
-	.rarity_border_color(lighten(#AD3EC4, 20%));
+        background-image: linear-gradient(140deg, #F97EE6, #FEE4F8, #F8A382, #F8C74F, #A8E651, #4CE1EE, #669EF5, #E5E5FD, #ED7DDF);
+        .rarity_border_color(lighten(#AD3EC4, 20%));
     }
     &.card-rarity-3 {
-	background-image: linear-gradient(140deg, #FFDA3C, #FFFFE8, #FFC537, #FBA922, #FFFFE8, #FFFFE8, #FFD02D, #FAA41A, #FFFFE8, #FEBF35, #FEBF35);
-	.rarity_border_color(lighten(#532626, 45%));
+        background-image: linear-gradient(140deg, #FFDA3C, #FFFFE8, #FFC537, #FBA922, #FFFFE8, #FFFFE8, #FFD02D, #FAA41A, #FFFFE8, #FEBF35, #FEBF35);
+        .rarity_border_color(lighten(#532626, 45%));
     }
     &.card-rarity-2 {
-	background-image: linear-gradient(140deg, #9FB5C7, #D9FFFF, #97B5C9, #D9FFFF, #95ADBA, #D9FFFF, #9FB5C7, #9FB5C7);
-	.rarity_border_color(lighten(#4A6675, 20%));
+        background-image: linear-gradient(140deg, #9FB5C7, #D9FFFF, #97B5C9, #D9FFFF, #95ADBA, #D9FFFF, #9FB5C7, #9FB5C7);
+        .rarity_border_color(lighten(#4A6675, 20%));
     }
 
     .rarity, .attribute {
-	height: @card-height + 10px;
+        height: @card-height + 10px;
         pointer-events: none;
     }
     .rarity, .attribute, .member-name {
-	position: absolute;
-	width: 100%;
-	background-repeat: no-repeat;
+        position: absolute;
+        width: 100%;
+        background-repeat: no-repeat;
     }
     .rarity {
-	background-position: bottom left;
-	bottom: 3px;
-	left: 3px;
+        background-position: bottom left;
+        bottom: 3px;
+        left: 3px;
     }
     .attribute {
-	background-position: top right;
-	background-size: 40px;
-	top: 3px;
-	right: 3px;
+        background-position: top right;
+        background-size: 40px;
+        top: 3px;
+        right: 3px;
     }
     .member-name {
         font-family: 'SoftSoul', 'Impact', sans-serif;
-	transform: rotate(-3deg);
-	text-align: right;
-	bottom: -5px;
-	right: 13px;
-	color: white;
-	margin: 0;
-	padding: 0;
+        transform: rotate(-3deg);
+        text-align: right;
+        bottom: -5px;
+        right: 13px;
+        color: white;
+        margin: 0;
+        padding: 0;
     }
 }
 
@@ -537,23 +481,23 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
 
 .card-info {
     .top-item {
-	padding: 0;
+        padding: 0;
     }
 
     .card-statistics {
-	padding: 0;
-	padding-top: 20px;
-	.btn-group, .tab-content {
-	    margin: auto;
-	    width: 100%;
-	    max-width: 800px;
-	}
-	.btn-group {
-	    margin-bottom: 20px;
-	}
-	.tab-content {
-	    text-align: left;
-	}
+        padding: 0;
+        padding-top: 20px;
+        .btn-group, .tab-content {
+            margin: auto;
+            width: 100%;
+            max-width: 800px;
+        }
+        .btn-group {
+            margin-bottom: 20px;
+        }
+        .tab-content {
+            text-align: left;
+        }
     }
 
 }
@@ -593,7 +537,7 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
     max-width: 800px;
     margin: auto;
     td:last-child {
-	text-align: right;
+        text-align: right;
     }
 }
 
@@ -666,59 +610,59 @@ td[data-field$="_min"], th[data-header-field$="_min"] {
     max-width: 600px;
     margin: auto;
     .top-item {
-	padding: 0;
+        padding: 0;
     }
     .member-image {
-	max-height: none;
-	margin: -50px 0 -30px 0;
+        max-height: none;
+        margin: -50px 0 -30px 0;
     }
     td:last-child {
-	width: 55%;
-	text-align: right;
+        width: 55%;
+        text-align: right;
     }
     tr[data-field="astrological_sign"] {
-	img {
-	    opacity: 0.6;
-	}
+        img {
+            opacity: 0.6;
+        }
     }
 }
 
 tr[data-field="band"] {
-	img {
-	    width: 200px;
-	    margin: -16px 0;
-	}
+    img {
+        width: 200px;
+        margin: -16px 0;
+    }
 }
 
 .member {
     text-align: center;
     transition: color @transition, opacity @transition;
     img {
-	max-width: 100%;
+        max-width: 100%;
     }
     h3 {
         font-family: 'SoftSoul', 'Impact', sans-serif;
-	transform: rotate(-6deg);
-	margin-top: -10px;
-	font-style: italic;
+        transform: rotate(-6deg);
+        margin-top: -10px;
+        font-style: italic;
         .text-3d-border(white);
     }
     &:hover, &:focus {
-	opacity: 0.8;
-	text-decoration: none;
-	color: lighten(@mainColor, 10%);
+        opacity: 0.8;
+        text-decoration: none;
+        color: lighten(@mainColor, 10%);
     }
 }
 
 #id_i_astrological_sign + .cuteform {
     .cuteform-elt:not([data-cuteform-val=""]) {
-	background-color: fade(white, 80%);
-	border-radius: 8px;
-	padding: 3px;
-	width: 22px;
-	&.cuteform-selected {
-	    background-color: white;
-	}
+        background-color: fade(white, 80%);
+        border-radius: 8px;
+        padding: 3px;
+        width: 22px;
+        &.cuteform-selected {
+            background-color: white;
+        }
     }
 }
 

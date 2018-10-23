@@ -86,11 +86,6 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
         height: 36px;
         margin: -10px -8px;
     }
-    .navbar-nav > li > a {
-        [class^="flaticon-"]:not(.flaticon-more) {
-            color: @secondaryColor;
-        }
-    }
 }
 
 #sidebar-wrapper {
@@ -127,41 +122,20 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
 }
 
 .current-activity_list[class*="shortcut-"] {
-    /* .home-site-logo, h2.home-site-description { */
-    /*     width: 140%; */
-    /*     max-width: 120%; */
-    /*     margin-left: -10%; */
-    /*     margin-top: 60px; */
-    /*     margin-bottom: 10px; */
-    /* } */
-    .activities-container, .home-transition {
-        padding: 0;
-        position: relative;
-        z-index: 2;
+    .home-site-logo, h2.home-site-description {
+        width: 140%;
+        max-width: 120%;
+        margin-left: -10%;
+        margin-top: 60px;
+        margin-bottom: 10px;
     }
-    .activities-container {
-        //box-shadow: 0px 18px 30px 2px rgba(0, 0, 0, 0.1);
-        background: white;
-        border-bottom-right-radius: 16px;
-        border-bottom-left-radius: 16px;
-        .row {
-            margin: 0;
+}
+@media(max-width: 991px) {
+    .current-activity_list[class*="shortcut-"] {
+        .home-site-logo, h2.home-site-description {
+            width: 100%;
+            margin-left: auto;
         }
-    }
-    .activity {
-        background: transparent;
-    }
-    .top_buttons {
-        margin: 0 20px;
-        .btn {
-            border-radius: 16px;
-            background-position: center right;
-            background-size: auto 112%;
-            background-repeat: no-repeat;
-        }
-    }
-    .nav-tabs {
-        a { .a-nodifference(); }
     }
 }
 
@@ -170,34 +144,6 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
         header {
             padding: 0;
             padding-bottom: 30px;
-        }
-    }
-}
-
-@media(max-width: 991px) {
-    .current-activity_list[class*="shortcut-"] {
-        .about-card {
-            display: none;
-        }
-        .collection-page-wrapper {
-            .home-wrapper {
-                background-size: 100%;
-                background-position: center -10%;
-                background-repeat: no-repeat;
-                padding-top: 30%;
-                .home {
-                    .home-inner {
-                        width: 100%;
-                        padding: 0 8%;
-                        margin: 0;
-
-                    }
-                }
-            }
-        }
-        .home-site-logo, h2.home-site-description {
-            width: 100%;
-            margin-left: auto;
         }
     }
 }

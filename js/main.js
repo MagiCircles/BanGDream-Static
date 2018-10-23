@@ -7,28 +7,6 @@ function cuteformclearOne(cuteform) {
 }
 
 // *****************************************
-// Index
-
-function loadIndex() {
-    let home = $('.home-wrapper[data-hd-art]');
-    if (home.length > 0 && $(document).width() > 992) {
-        home.css('background-image', 'url(\'' + home.data('hd-art') + '\')');
-    }
-    // Change width / height of all banners based on first
-    $('#carousel-latest-news .item img').width('100%');
-    let height = $('#carousel-latest-news .item').first().height();
-    if (height) {
-        $('#carousel-latest-news .item:not(:first)').each(function() {
-            if ($(this).find('img').length) {
-                $(this).find('img').height(height);
-            } else {
-                $(this).height(height);
-            }
-        });
-    }
-}
-
-// *****************************************
 // Cards
 
 // Card item

@@ -32,15 +32,16 @@ function loadCardInList() {
     $('.card-solo').hover(swap, swap);
 
     // Show/hide limited when origin = gacha
+    // Show/hide gacha_type when origin = gacha
     function onOriginChange(animation) {
         if ($('#sidebar-wrapper #id_origin').val() == 'is_gacha') {
-            $('#sidebar-wrapper #id_is_limited').closest('.form-group').show(animation);
+            $('#sidebar-wrapper #id_gacha_type').closest('.form-group').show(animation);
         } else {
-            $('#sidebar-wrapper #id_is_limited').closest('.form-group').hide(animation);
-            $('#sidebar-wrapper #id_is_limited').val('1');
+            $('#sidebar-wrapper #id_gacha_type').closest('.form-group').hide(animation);
+            $('#sidebar-wrapper #id_gacha_type').val('');
         }
     }
-    if ($('#sidebar-wrapper #id_origin').length > 0 && $('#sidebar-wrapper #id_is_limited').length > 0) {
+    if ($('#sidebar-wrapper #id_origin').length > 0 && $('#sidebar-wrapper #id_gacha_type').length > 0) {
         onOriginChange();
         $('#sidebar-wrapper #id_origin').change(function () { onOriginChange('slow') });
     }

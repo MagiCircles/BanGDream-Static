@@ -31,7 +31,6 @@ function loadCardInList() {
     }
     $('.card-solo').hover(swap, swap);
 
-    // Show/hide limited when origin = gacha
     // Show/hide gacha_type when origin = gacha
     function onOriginChange(animation) {
         if ($('#sidebar-wrapper #id_origin').val() == 'is_gacha') {

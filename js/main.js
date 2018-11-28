@@ -280,12 +280,11 @@ function loadEventInList() {
 }
 
 function onEventTypeChange(form, animation) {
-        if (form.find('#id_i_type').val() == '1' || form.find('#id_i_type').val() == '2') {
-            form.find('#id_i_boost_stat').closest('.form-group').show(animation);
-        }
-        else{
+    if (form.find('#id_i_type').val() == '1' || form.find('#id_i_type').val() == '2') {
+        form.find('#id_i_boost_stat').closest('.form-group').show(animation);
+    } else{
         form.find('#id_i_boost_stat').closest('.form-group').hide(animation);
-        }
+    }
 }
 
 function loadEventForm() {

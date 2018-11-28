@@ -257,6 +257,57 @@ function loadEventGacha() {
     }
 }
 
+// Show/hide status when version is set
+function onVersionChange(animation) {
+    if ($('#sidebar-wrapper #id_version').val()) {
+        $('#sidebar-wrapper #id_status').closest('.form-group').show(animation);
+    } else {
+        $('#sidebar-wrapper #id_status').closest('.form-group').hide(animation);
+        $('#sidebar-wrapper #id_status').prop('checked', false);
+    }
+}
+
+function loadGachaInList() {
+    if ($('#sidebar-wrapper #id_version').length > 0 && $('#sidebar-wrapper #id_status').length > 0) {
+        onVersionChange();
+        $('#sidebar-wrapper #id_version').change(function () { onVersionChange('slow') });
+    }
+}
+
+function loadEventInList() {
+    if ($('#sidebar-wrapper #id_version').length > 0 && $('#sidebar-wrapper #id_status').length > 0) {
+        onVersionChange();
+        $('#sidebar-wrapper #id_version').change(function () { onVersionChange('slow') });
+    }
+    //Show/hide stat boost filter
+    function onTypeChange(animation) {
+        if ($('#sidebar-wrapper #id_i_type').val() == '1' || $('#sidebar-wrapper #id_i_type').val() == '2') {
+            $('#sidebar-wrapper #id_i_boost_stat').closest('.form-group').show(animation);
+        } else {
+            $('#sidebar-wrapper #id_i_boost_stat').closest('.form-group').hide(animation);
+            $('#sidebar-wrapper #id_i_boost_stat').val('');
+        }
+    }
+    if ($('#sidebar-wrapper #id_i_type').length > 0 && $('#sidebar-wrapper #id_i_boost_stat').length > 0) {
+        onTypeChange();
+        $('#sidebar-wrapper #id_i_type').change(function () { onTypeChange('slow') });
+    }
+}
+
+function onEventTypeChange(form, animation) {
+    if (form.find('#id_i_type').val() == '1' || form.find('#id_i_type').val() == '2') {
+        form.find('#id_i_boost_stat').closest('.form-group').show(animation);
+    } else{
+        form.find('#id_i_boost_stat').closest('.form-group').hide(animation);
+    }
+}
+
+function loadEventForm() {
+    let form = $('[data-form-name$="_event"]');
+    onEventTypeChange(form);
+    form.find('#id_i_type').change(function () { onEventTypeChange(form, 'slow'); });
+}
+
 // *****************************************
 // Loaded in all pages
 

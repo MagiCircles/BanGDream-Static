@@ -26,6 +26,10 @@
 @secondaryColor: #F2B141;
 @darkColor: #666;
 
+@performanceColor: #FFBCD4;
+@techniqueColor: #BCE8FF;
+@visualColor: #FFE8BC;
+
 /******************************************/
 /* Tools */
 /******************************************/
@@ -616,6 +620,27 @@ tr[data-field="band"] {
 
 #sidebar-wrapper #id_status + .cuteform .cuteform-elt {
     margin: 0;
+}
+
+/* Event */
+#id_i_boost_stat + .cuteform {
+    .cuteform-elt:not([data-cuteform-val=""]){
+        border-radius: 50%;
+        text-align: center;
+        color: #666666;
+        font-size: 120%;
+        vertical-align: middle;
+        width: 11%;
+    }
+    .cuteform-elt[data-cuteform-val="0"] {
+        background-color: @performanceColor;
+    }
+    .cuteform-elt[data-cuteform-val="1"] {
+        background-color: @techniqueColor;
+    }
+    .cuteform-elt[data-cuteform-val="2"] {
+        background-color: @visualColor;
+    }
 }
 
 /* Song */

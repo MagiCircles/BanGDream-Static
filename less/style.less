@@ -437,20 +437,63 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
     .card-statistics {
         padding: 0;
         padding-top: 20px;
+        .btn {
+            border-radius: 20px!important;
+            font-weight: bold;
+            color: #666;
+            &:hover, &:focus {
+                text-decoration: none;
+            }
+            &.active {
+                color: white;
+                box-shadow: none;
+                &.attribute-Power { background-color: @powerColor; }
+                &.attribute-Cool { background-color: @coolColor; }
+                &.attribute-Pure { background-color: @pureColor; }
+                &.attribute-Happy { background-color: @happyColor; }
+            }
+        }
         .btn-group, .tab-content {
             margin: auto;
             width: 100%;
             max-width: 800px;
         }
-        .btn-group {
-            margin-bottom: 20px;
-        }
         .tab-content {
             text-align: left;
+        }
+        hr {
+            border-top: 5px dotted #eee;
+            margin-top: 20px;
         }
     }
 
 }
+
+[class^="stat-label-"] {
+    display: inline-block;
+    padding: 4px 12px;
+    margin-top: -4px;
+    color: #666;
+    font-weight: bold;
+    border-radius: 20px;
+    min-width: 100%;
+}
+.stat-label-performance { background-color: @performanceColor; }
+.stat-label-technique { background-color: @techniqueColor; }
+.stat-label-visual { background-color: @visualColor; }
+.stat-label-Power { background-color: lighten(@powerColor, 30%); }
+.stat-label-Cool { background-color: lighten(@coolColor, 30%); }
+.stat-label-Pure { background-color: lighten(@pureColor, 30%); }
+.stat-label-Happy { background-color: lighten(@happyColor, 30%); }
+
+.progress-bar-performance { .progress-bar-variant(@performanceColor); }
+.progress-bar-technique { .progress-bar-variant(@techniqueColor); }
+.progress-bar-visual { .progress-bar-variant(@visualColor); }
+
+.progress-bar-Power-light { .progress-bar-variant(lighten(@powerColor, 30%)); }
+.progress-bar-Cool-light { .progress-bar-variant(lighten(@coolColor, 30%)); }
+.progress-bar-Pure-light { .progress-bar-variant(lighten(@pureColor, 30%)); }
+.progress-bar-Happy-light { .progress-bar-variant(lighten(@happyColor, 30%)); }
 
 @media (max-width: 890px) {
     .icon-card, .icon-card + .btn-group {
@@ -623,6 +666,7 @@ tr[data-field="band"] {
 }
 
 /* Event */
+
 #id_i_boost_stat + .cuteform {
     .cuteform-elt:not([data-cuteform-val=""]) {
         padding: 0;
@@ -636,6 +680,9 @@ tr[data-field="band"] {
             line-height: 35px;
             color: #666;
             font-weight: bold;
+        }
+        &.cuteform-selected {
+            border-color: #666;
         }
     }
     .cuteform-elt[data-cuteform-val="0"] span {

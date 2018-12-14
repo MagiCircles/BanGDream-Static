@@ -668,20 +668,20 @@ tr[data-field="band"] {
 /* Event */
 
 #id_i_boost_stat + .cuteform {
-    .cuteform-elt:not([data-cuteform-val=""]) {
+    .cuteform-elt {
         padding: 0;
+        vertical-align: middle;
+        line-height: 30px;
+        width: 30px;
+        text-align: center;
         span {
             display: block;
             border-radius: 50%;
-            text-align: center;
-            font-size: 1.25em;
-            vertical-align: middle;
-            width: 35px;
-            line-height: 35px;
+            font-size: 1.2em;
             color: #666;
             font-weight: bold;
         }
-        &.cuteform-selected {
+        &.cuteform-selected:not([data-cuteform-val=""]) {
             border-color: #666;
         }
     }

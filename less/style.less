@@ -620,11 +620,9 @@ td[data-field$="_min"], th[data-header-field$="_min"] {
     }
 }
 
-tr[data-field="band"] {
-    img {
-        width: 200px;
-        margin: -16px 0;
-    }
+tr[data-field="band"] img {
+    width: 200px;
+    margin: -16px 0;
 }
 
 .member {
@@ -697,6 +695,10 @@ tr[data-field="band"] {
 }
 
 /* Song */
+
+[data-field^="song"] img {
+    max-height: 150px;
+}
 
 .top-item .song-image {
     max-height: none;

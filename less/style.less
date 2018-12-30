@@ -170,6 +170,38 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
     }
 }
 
+/* Gallery */
+
+.gallery-category {
+    figcaption {
+        display: inline-block;
+        margin-top: -70px;
+        font-size: 1.5em;
+        font-weight: normal;
+        width: 97.5%;
+        border: 0;
+        border-radius: 40px;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        border-top: 0;
+        padding: 15px 10px;
+        max-width: 342px;
+    }
+    &:hover, &:focus {
+        figcaption {
+            background-color: darken(@mainColor, 10%);
+            border-color: darken(@mainColor, 12%);
+        }
+    }
+}
+
+html:not([lang^="zh-han"]):not([lang="kr"]):not([lang="ja"]):not([lang="ru"]):not([lang="vi"]) {
+    .gallery-category figcaption {
+        font-family: 'SoftSoul', 'Impact', sans-serif;
+        font-style: italic;
+    }
+}
+
 /* Model viewer */
 
 #dlcontainer {
@@ -875,9 +907,20 @@ tr[data-field="band"] img {
     }
 }
 
+
 .asset-info {
     .top-item img {
         max-height: none;
+    }
+    [data-field="type"] {
+        li {
+            display: inline-block;
+            padding-left: 10px;
+            a {
+                font-size: 0.8em;
+                color: #ccc;
+            }
+        }
     }
 }
 

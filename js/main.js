@@ -242,9 +242,9 @@ function loadEventGacha() {
             if (last_field.data('field') == prefix + 'image') {
                 return ;
             }
-            let original_name = field.find('th').first().text();
-            field.find('th').first().html('<h3>' + field.find('th').text() + '</h3>');
-            field.find('th').first().append('<small class="text-muted"><span class="glyphicon glyphicon-triangle-bottom"></span> <span class="text-open"></span></small>');
+            let original_name = field.find('th').last().text();
+            field.find('th').last().html('<h3>' + original_name + '</h3>');
+            field.find('th').last().append('<small class="text-muted"><span class="glyphicon glyphicon-triangle-bottom"></span> <span class="text-open"></span></small>');
             field.css('cursor', 'pointer');
             field.unbind('click');
             field.click(function(e) {

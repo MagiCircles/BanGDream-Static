@@ -347,6 +347,7 @@ function aprilFoolsGame() {
                 let ras = 'https://i.imgur.com/u3MjoNt.png';
                 $('.home-wrapper.with-background').css('background-image', 'url(\'' + ras + '\')')
                 $('.site-name').text('RAISE A SUILEN Party');
+                $('body.current-member_list .collection-page-wrapper').html('<img src="https://i.imgur.com/tO7ih1A.png" alt="RAISE A SUILEN" class="img-responsive" /><br><img src="https://i.imgur.com/spHvXaJ.png" class="img-responsive" />');
             },
             'hiddenAfterDivs': [
                 ['.home-site-donate-message .btn', blackCat],

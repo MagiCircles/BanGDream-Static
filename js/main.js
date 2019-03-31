@@ -309,6 +309,240 @@ function loadEventForm() {
 }
 
 // *****************************************
+
+function injectStyles(rule) {
+  var div = $("<div />", {
+    html: '&shy;<style>' + rule + '</style>'
+  }).appendTo("body");
+}
+
+function ordinal_suffix_of(i) {
+    var j = i % 10,
+        k = i % 100;
+    if (j == 1 && k != 11) {
+        return i + "st";
+    }
+    if (j == 2 && k != 12) {
+        return i + "nd";
+    }
+    if (j == 3 && k != 13) {
+        return i + "rd";
+    }
+    return i + "th";
+}
+
+function aprilFoolsGame() {
+    let today = new Date();
+    // Check it\'s april 1st
+    if ((today.getMonth() + 1) == 4 && today.getDate() == 1) {
+
+        let whiteCat = 'https://i.imgur.com/rNwhPvb.png';
+        let blackCat = 'https://i.imgur.com/fQpzPKC.png';
+        let conf = {
+            'startImage': 'https://i.imgur.com/cVPYABX.png',
+            'startText': '<div class="speech-bubble">Kanae? Who\'s  that? We don\'t know who you\'re talking about 😈<br><br><p>We are</p><img src="https://i.imgur.com/tO7ih1A.png" alt="RAISE A SUILEN" class="img-responsive" /><p> and we\'re taking over this community today.</p></div><br><quote class="fontx1-5">Looks like Kanae is in trouble 😰<br><br>If you want to save Bandori Party, you\'ll have  to find all the <img src="https://i.imgur.com/fQpzPKC.png" alt="cat headphones" /> of RAISE A SUILEN hidden around the website.<br><br>If you manage to finish before the end of April 1st, you\'ll earn a badge! 🏅</quote>',
+            'startButton': 'Find all the <img src="https://i.imgur.com/rNwhPvb.png" alt="cat headphones" />',
+            'takeOverDivs': function() {
+                $('.home-site-logo img').prop('src', 'https://i.imgur.com/ro41zfs.png');
+                let ras = 'https://i.imgur.com/u3MjoNt.png';
+                $('.home-wrapper.with-background').css('background-image', 'url(\'' + ras + '\')')
+                $('.site-name').text('RAISE A SUILEN Party');
+            },
+            'hiddenAfterDivs': [
+                ['.home-site-donate-message .btn', blackCat],
+                ['[data-cuteform-val="tr"]', blackCat],
+                ['[for="id_c_tags_23"]', whiteCat],
+                ['#sidebar-wrapper .sticky-buttons .btn .flaticon-search', whiteCat],
+                ['[data-item="asset"][data-item-id="1130"] h3', blackCat],
+                ['body.current-gallery figure', blackCat],
+                ['[data-item="gacha"] div', blackCat],
+                ['[data-item="event"] div', blackCat],
+                ['[data-item="song"] div', blackCat],
+                ['[data-item="item"] div', blackCat],
+                ['[data-item="areaitem"] div', blackCat],
+                ['[data-item="account"] div', blackCat],
+                ['[data-item="area"] h5', whiteCat],
+                ['[for="id_i_attribute"]', whiteCat],
+                ['[for="id_gacha_type"]', whiteCat],
+                ['.card-wrapper', blackCat],
+                ['.col-xs-2[data-item="card"] .icon-card', blackCat],
+                ['[data-item="card"] .panel-content', blackCat],
+                ['#alternative-donations a', blackCat],
+                ['[data-item="donate"] .donate-month', blackCat],
+                ['body.current-notification_list h1', blackCat],
+                ['[for="id_i_message"]', whiteCat],
+                ['.current-about .text-Power', blackCat],
+                ['.current-about .padding50 [href="https://facebook.com/BandoriParty/"]', blackCat],
+                ['.current-about #icons', blackCat],
+                ['.current-about #developers', blackCat],
+                ['.area_see_all', whiteCat],
+                ['.current-about #contributors', blackCat],
+                ['.follow-buttons', whiteCat],
+                ['.text-right.badges a', whiteCat],
+                ['.staff-status', whiteCat],
+                ['.current-privatemessage_list h1', blackCat],
+                ['[name="d_hidden_tags-cosplay"]', blackCat],
+                ['#donationLink .flaticon-promo', blackCat],
+                ['.glyphicon.glyphicon-chevron-up', blackCat],
+                ['#wiki-title', blackCat],
+                ['#wiki-content', blackCat],
+                ['#wiki-sidebar', whiteCat],
+                ['.navbar-brand', whiteCat],
+                ['[for="id_status"]', whiteCat],
+                ['[for="id_i_boost_stat"]', whiteCat],
+                ['[data-link-name="more"] .dropdown-header', blackCat],
+            ],
+            'toFind': '<img src="' + blackCat + '" alt="cat hearphones" />',
+            'endText': '<div class="speech-bubble end" style="background-color: #E40046;">Thank you so much!<br>You saved me!</div><br><div class="fontx1-5">You gave all the <img src="' + blackCat +'" alt="cat hearphones"> you collected to RAISE A SUILEN, so they freed Kanae 🎉<br><br><div class="alert alert-warning">Don\'t know who Kanae is?<br><a href="/about/">→ Read more about her!</a></div><div class="afterbadge" style="display: none;">To thank you for your help, Kanae just gave you a badge!<br><br><div class="text-center"><a href="/me/?open=badge" class="btn btn-main btn-xl">Check it out <i class="flaticon-link fontx0-5"></i></a></div></div></div>',
+            'endImage': 'https://i.bandori.party/static/img/chibi_kanae.png',
+        };
+
+        let css = '.speech-bubble {\
+	position: relative;\
+	background: #942192;\
+	border-radius: .4em;\
+    color: white;\
+    padding: 10px;\
+    text-align: center;\
+    font-size: 1.5em;\
+}\
+\
+.speech-bubble:after {\
+	content: \'\';\
+	position: absolute;\
+	right: 0;\
+	top: 50%;\
+	width: 0;\
+	height: 0;\
+	border: 47px solid transparent;\
+	border-left-color: #942192;\
+	border-right: 0;\
+	border-bottom: 0;\
+	margin-top: -23.5px;\
+	margin-right: -47px;\
+}\
+.speech-bubble.end {\
+    background: #E40046;\
+    padding: 30px 10px;\
+}\
+.speech-bubble.end:after {\
+    border-left-color: #E40046;\
+}\
+.aprilFoolsPopup {\
+    position: fixed;\
+    z-index: 3000;\
+    bottom: 20px;\
+    left: 20px;\
+    max-width: 100%;\
+    background-color: rgba(255, 255, 255, 0.95);\
+    border-radius: 10px;\
+    padding: 20px 30px;\
+    border: 2px solid white;\
+    box-shadow: 0px 0px 30px 2px rgba(0, 0, 0, 0.2);\
+}\
+';
+        injectStyles(css);
+
+        let gameDismissed = localStorage['aprilFoolDismissed' + today.getYear()] || false;
+        let gameEnded = localStorage['aprilFoolEnded' + today.getYear()] || false;
+        if (gameDismissed || gameEnded) {
+            return;
+        }
+        conf.takeOverDivs();
+
+        function gameStartedPop() {
+            let totalFound = 0;
+            $.each(conf.hiddenAfterDivs, function(i, d) {
+                let wasFound = localStorage['aprilFoolFound' + today.getYear() + '' + i] || false;
+                if (wasFound) {
+                    totalFound += 1;
+                } else {
+                    let toClick = $('<a href="#" class="padding10"><img src="' + d[1] + '" alt="to find" /></a>');
+                    toClick.click(function(e) {
+                        e.preventDefault();
+                        toClick.remove();
+                        localStorage['aprilFoolFound' + today.getYear() + '' + i] = true;
+                        totalFound += 1;
+                        $('.aprilFoolsPopup .found').text(totalFound);
+                        if (totalFound == totalToFind) {
+                            // End of game!
+                            localStorage['aprilFoolEnded' + today.getYear()] = true;
+                            $.ajax({
+                                url: '/ajax/endaprilfool/',
+                                success: function(data) {
+                                    if (data.already_got) {
+                                        $('#freeModal .afterbadge').show();
+                                        $('#freeModal .afterbadge').after(
+                                            '<br><p class="alert alert-info fontx0-8">\
+Congratulations, you\'re the <b>' + ordinal_suffix_of(data['already_got'] + 1)
+                                                + '</b> player who completed this challenge!</p>');
+                                    }
+                                },
+                            });
+                            let modalEndContent = $('\
+<div class="row">\
+<div class="col-md-6 col-xs-8">\
+<p class="endText">' + conf.endText + '</p>\
+</div>\
+<div class="col-md-6 col-xs-4">\
+<img src="' + conf.endImage + '" alt="April fools" class="img-responsive" />\
+</div>\
+</div>\
+');
+                            freeModal('April fools!', modalEndContent, 0, 'lg');
+                            $('#freeModal').on('hidden.bs.modal', function() {
+                                location.reload();
+                            });
+                        }
+                        return false;
+                    });
+                    $(d[0]).first().after(toClick);
+                }
+            });
+            let totalToFind = conf.hiddenAfterDivs.length;
+            let popup = $('<div class="aprilFoolsPopup">\
+You found <span class="found">' + totalFound + '</span> / <span>' + totalToFind + '</span> ' + conf.toFind + '\
+</div>');
+            $('body').append(popup);
+        }
+
+        let gameStarted = localStorage['aprilFoolStarted' + today.getYear()] || false;
+        if (gameStarted) {
+            gameStartedPop();
+        } else {
+            let buttons = '<div class="text-center">\
+<a href="#play" class="btn btn-main btn-xl">' + conf.startButton + '</a><br>\
+<a href="#dismiss" class="btn btn-link-muted">Not interested</a></div>';
+            let modalContent = $('\
+<div class="row">\
+<div class="col-md-6 col-xs-8">\
+<p>' + conf.startText + '<br><br><br>' + buttons + '</p>\
+</div>\
+<div class="col-md-6 col-xs-4">\
+<img src="' + conf.startImage + '" alt="April fools" class="img-responsive" />\
+</div>\
+</div>\
+');
+            modalContent.find('[href="#dismiss"]').click(function(e) {
+                e.preventDefault();
+                localStorage['aprilFoolDismissed' + today.getYear()] = true;
+                location.reload();
+                return false;
+            });
+            modalContent.find('[href="#play"]').click(function(e) {
+                e.preventDefault();
+                localStorage['aprilFoolStarted' + today.getYear()] = true;
+                gameStarted = true;
+                gameStartedPop();
+                $('#freeModal').modal('hide');
+                return false;
+            });
+            freeModal('April fools!', modalContent, 0, 'lg');
+        }
+    }
+}
+
+// *****************************************
 // Loaded in all pages
 
 function displayBandMemberFilter() {
@@ -320,4 +554,5 @@ function displayBandMemberFilter() {
 
 $(document).ready(function() {
     displayBandMemberFilter();
+    aprilFoolsGame();
 });

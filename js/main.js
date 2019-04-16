@@ -200,11 +200,11 @@ function loadEventGacha() {
         caret.addClass('glyphicon-triangle-bottom');
         text.text(gettext('Open {thing}').replace('{thing}', original_name));
     }
-    function toggleVersion(version, prefix, toggle, original_name, animation) {
-        let caret = $('[data-field="' + prefix + 'image"] .glyphicon');
-        let text = $('[data-field="' + prefix + 'image"] .text-open');
-        let isOpen = ($('[data-field="' + prefix + 'countdown"]').length > 0
-                      || $('[data-field="' + prefix + 'rerun"] .countdown').length > 0);
+    function toggleVersion(table, version, prefix, toggle, original_name, animation) {
+        let caret = table.find('[data-field="' + prefix + 'image"] .glyphicon');
+        let text = table.find('[data-field="' + prefix + 'image"] .text-open');
+        let isOpen = (table.find('[data-field="' + prefix + 'countdown"]').length > 0
+                      || table.find('[data-field="' + prefix + 'rerun"] .countdown').length > 0);
         if (toggle) {
             if (caret.hasClass('glyphicon-triangle-bottom')) {
                 showClose(caret, text, original_name);
@@ -219,7 +219,7 @@ function loadEventGacha() {
             }
         }
         $.each(fields_per_version, function(_, field_name) {
-            let field = $('[data-field="' + prefix + field_name + '"]');
+            let field = table.find('[data-field="' + prefix + field_name + '"]');
             if (field_name != 'image') {
                 field.find('td').first().css('border-left', '1px solid #ddd');
                 field.find('td').last().css('border-right', '1px solid #ddd');
@@ -237,22 +237,26 @@ function loadEventGacha() {
     }
     if (typeof versions_prefixes != 'undefined' && typeof fields_per_version != 'undefined') {
         $.each(versions_prefixes, function(version, prefix) {
-            let field = $('[data-field="' + prefix + 'image"]');
-            let last_field = $('[data-field^="' + prefix + '"]').last();
-            if (last_field.data('field') == prefix + 'image') {
-                return ;
+            let field = $('[data-field="' + prefix + 'image"]:not([data-version-handler="true"])');
+            if (field.length > 0) {
+                let table = field.closest('table');
+                field.attr('data-version-handler', true);
+                let last_field = table.find('[data-field^="' + prefix + '"]').last();
+                if (last_field.data('field') == prefix + 'image') {
+                    return ;
+                }
+                let original_name = field.find('th').text();
+                field.find('th').html('<h3>' + original_name + '</h3>');
+                field.find('th').append('<small class="text-muted"><span class="glyphicon glyphicon-triangle-bottom"></span> <span class="text-open"></span></small>');
+                field.css('cursor', 'pointer');
+                field.unbind('click');
+                field.click(function(e) {
+                    e.preventDefault();
+                    toggleVersion(table, version, prefix, true, original_name, 'fast');
+                    return false;
+                });
+                toggleVersion(table, version, prefix, false, original_name);
             }
-            let original_name = field.find('th').last().text();
-            field.find('th').last().html('<h3>' + original_name + '</h3>');
-            field.find('th').last().append('<small class="text-muted"><span class="glyphicon glyphicon-triangle-bottom"></span> <span class="text-open"></span></small>');
-            field.css('cursor', 'pointer');
-            field.unbind('click');
-            field.click(function(e) {
-                e.preventDefault();
-                toggleVersion(version, prefix, true, original_name, 'fast');
-                return false;
-            });
-            toggleVersion(version, prefix, false, original_name);
         });
     }
 }

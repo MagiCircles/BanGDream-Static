@@ -334,9 +334,10 @@ function ordinal_suffix_of(i) {
 function aprilFoolsGame() {
     let today = new Date();
     // Check it\'s april 1st
-    if ((today.getMonth() + 1) == 4 && today.getDate() == 1) {
+    if (is_authenticated && (today.getMonth() + 1) == 4 && today.getDate() == 1) {
 
         let whiteCat = 'https://i.imgur.com/rNwhPvb.png';
+        let buttonCat = '<div class="btn btn-main"><img src="https://i.imgur.com/rNwhPvb.png"></div>';
         let blackCat = 'https://i.imgur.com/fQpzPKC.png';
         let conf = {
             'startImage': 'https://i.imgur.com/cVPYABX.png',
@@ -350,48 +351,48 @@ function aprilFoolsGame() {
                 $('body.current-member_list .collection-page-wrapper').html('<img src="https://i.imgur.com/tO7ih1A.png" alt="RAISE A SUILEN" class="img-responsive" /><br><img src="https://i.imgur.com/spHvXaJ.png" class="img-responsive" />');
             },
             'hiddenAfterDivs': [
-                ['.home-site-donate-message .btn', blackCat],
-                ['[data-cuteform-val="tr"]', blackCat],
-                ['[for="id_c_tags_23"]', whiteCat],
-                ['#sidebar-wrapper .sticky-buttons .btn .flaticon-search', whiteCat],
-                ['[data-item="asset"][data-item-id="1130"] h3', blackCat],
-                ['body.current-gallery figure', blackCat],
-                ['[data-item="gacha"] div', blackCat],
-                ['[data-item="event"] div', blackCat],
-                ['[data-item="song"] div', blackCat],
-                ['[data-item="item"] div', blackCat],
-                ['[data-item="areaitem"] div', blackCat],
-                ['[data-item="account"] div', blackCat],
-                ['[data-item="area"] h5', whiteCat],
-                ['[for="id_i_attribute"]', whiteCat],
-                ['[for="id_gacha_type"]', whiteCat],
-                ['.card-wrapper', blackCat],
-                ['.col-xs-2[data-item="card"] .icon-card', blackCat],
-                ['[data-item="card"] .panel-content', blackCat],
-                ['#alternative-donations a', blackCat],
-                ['[data-item="donate"] .donate-month', blackCat],
-                ['body.current-notification_list h1', blackCat],
-                ['[for="id_i_message"]', whiteCat],
-                ['.current-about .text-Power', blackCat],
-                ['.current-about .padding50 [href="https://facebook.com/BandoriParty/"]', blackCat],
-                ['.current-about #icons', blackCat],
-                ['.current-about #developers', blackCat],
-                ['.area_see_all', whiteCat],
-                ['.current-about #contributors', blackCat],
-                ['.follow-buttons', whiteCat],
-                ['.text-right.badges a', whiteCat],
-                ['.staff-status', whiteCat],
-                ['.current-privatemessage_list h1', blackCat],
-                ['[name="d_hidden_tags-cosplay"]', blackCat],
-                ['#donationLink .flaticon-promo', blackCat],
-                ['.glyphicon.glyphicon-chevron-up', blackCat],
-                ['#wiki-title', blackCat],
-                ['#wiki-content', blackCat],
-                ['#wiki-sidebar', whiteCat],
-                ['.navbar-brand', whiteCat],
-                ['[for="id_status"]', whiteCat],
-                ['[for="id_i_boost_stat"]', whiteCat],
-                ['[data-link-name="more"] .dropdown-header', blackCat],
+                ['.home-site-donate-message .btn', blackCat, 'Donations help the community thrive!'],
+                ['[data-cuteform-val="tr"]', blackCat, 'We are an international community. Try to change your language!'],
+                ['[for="id_c_tags_12"]', whiteCat, 'You can look for activities with tags! So many to choose from...'],
+                ['#sidebar-wrapper .sticky-buttons .btn', whiteCat, 'Searching and filtering is fun!'],
+                ['[data-item="asset"] h3', blackCat, 'You can download the full size April Fools login title on BanPa~'],
+                ['body.current-gallery figure', blackCat, 'Check out our gallery of images!'],
+                ['[data-item="gacha"] div', blackCat, 'Have you checked gachas?'],
+                ['[data-item="event"] div', blackCat, 'Have you checked events?'],
+                ['[data-item="song"] div', blackCat, 'Have you checked the songs?'],
+                ['[data-item="item"] div', blackCat, 'Have you checked the items?'],
+                ['[data-item="areaitem"] div', blackCat, 'Have you checked the area items?'],
+                ['[data-item="account"] div', blackCat, 'Have you checked the leaderboard?'],
+                ['[data-item="area"] h5', buttonCat, 'The gallery includes areas! Nice~'],
+                ['[for="id_i_attribute"]', whiteCat, 'Look for cards by attribute!'],
+                ['[for="id_gacha_type"]', whiteCat, 'Try to filter for gacha cards!'],
+                ['.card-wrapper', blackCat, 'Have you checked the cards?'],
+                ['.col-xs-2[data-item="card"] .icon-card', blackCat, 'Try the alternative views we have for cards!'],
+                ['[data-item="card"] .panel-content', blackCat, 'Try the alternative views we have for cards!'],
+                ['#alternative-donations a.btn', blackCat, 'Donations help the community thrive!'],
+                ['[data-item="donate"] .donate-month', blackCat, 'Donations help the community thrive!'],
+                ['body.current-notification_list h1', blackCat, 'Have you received any notifications lately?'],
+                ['[for="id_i_message"]', whiteCat, 'Notifications are searchable!'],
+                ['.current-about .text-Power', blackCat, 'Have you met our staff team?'],
+                ['.current-about .padding50 [href="https://facebook.com/BandoriParty/"]', blackCat, 'You can contact us on Facebook~'],
+                ['.current-about #icons', blackCat, 'Check out our about page!'],
+                ['.current-about #developers', blackCat, 'Check out our about page!'],
+                ['.area_see_all', buttonCat, 'The gallery includes areas! Yay~'],
+                ['.current-about #contributors', blackCat, 'We have contributors helping the staff team. Make sure you meet them all!'],
+                ['.follow-buttons', whiteCat, 'Have you checked your profile?'],
+                ['.text-right.badges a', whiteCat, 'Have you checked your profile?'],
+                ['.staff-status', whiteCat, 'Our staff team would love to have more followers~'],
+                ['.current-privatemessage_list h1', blackCat, 'Have you received any private message lately?'],
+                ['[name="d_hidden_tags-cosplay"]', blackCat, 'Did you know you can hide and show tagged activities? Check your activities settings!'],
+                ['#form [class^=flaticon-]', blackCat, 'Check your settings!'],
+                ['.glyphicon.glyphicon-chevron-up', blackCat, 'Check your settings!'],
+                ['#wiki-title', blackCat, 'We have a really cool wiki!'],
+                ['#wiki-content', blackCat, 'We have really cool help pages!'],
+                ['#wiki-sidebar', whiteCat, 'We have a really cool wiki!'],
+                ['.navbar-brand', whiteCat, 'Check the navbar!'],
+                ['[for="id_status"]', whiteCat, 'You can filter events by version!'],
+                ['[for="id_i_boost_stat"]', whiteCat, 'Try to filter events "Challenge Live"!'],
+                ['[data-link-name="more"] .dropdown-header', blackCat, 'Have you checked out our other website from the "..." top bar?'],
             ],
             'toFind': '<img src="' + blackCat + '" alt="cat hearphones" />',
             'endText': '<div class="speech-bubble end" style="background-color: #E40046;">Thank you so much!<br>You saved me!</div><br><div class="fontx1-5">You gave all the <img src="' + blackCat +'" alt="cat hearphones"> you collected to RAISE A SUILEN, so they freed Kanae 🎉<br><br><div class="alert alert-warning">Don\'t know who Kanae is?<br><a href="/about/">→ Read more about her!</a></div><div class="afterbadge" style="display: none;">To thank you for your help, Kanae just gave you a badge!<br><br><div class="text-center"><a href="/me/?open=badge" class="btn btn-main btn-xl">Check it out <i class="flaticon-link fontx0-5"></i></a></div></div></div>',
@@ -453,25 +454,31 @@ function aprilFoolsGame() {
 
         function gameStartedPop() {
             let totalFound = 0;
+            let onPage = 0;
+            let hintable = [];
             $.each(conf.hiddenAfterDivs, function(i, d) {
                 let wasFound = localStorage['aprilFoolFound' + today.getYear() + '' + i] || false;
                 if (wasFound) {
                     totalFound += 1;
                 } else {
-                    let toClick = $('<a href="#" class="padding10"><img src="' + d[1] + '" alt="to find" /></a>');
+                    if ($(d[0]).length > 0) {
+                        onPage += 1;
+                        let toClick = $('<a href="#" class="padding10">' + (d[1].indexOf('<') != -1 ? d[1] : '<img src="' + d[1] + '" alt="to find" />') + '</a>');
                     toClick.click(function(e) {
                         e.preventDefault();
                         toClick.remove();
                         localStorage['aprilFoolFound' + today.getYear() + '' + i] = true;
                         totalFound += 1;
                         $('.aprilFoolsPopup .found').text(totalFound);
+                        onPage -= 1;
+                        $('.aprilFoolsPopup .hint').html(getHint());
                         if (totalFound == totalToFind) {
                             // End of game!
                             localStorage['aprilFoolEnded' + today.getYear()] = true;
                             $.ajax({
                                 url: '/ajax/endaprilfool/',
                                 success: function(data) {
-                                    if (data.already_got) {
+                                    if ('already_got' in data) {
                                         $('#freeModal .afterbadge').show();
                                         $('#freeModal .afterbadge').after(
                                             '<br><p class="alert alert-info fontx0-8">\
@@ -497,13 +504,51 @@ Congratulations, you\'re the <b>' + ordinal_suffix_of(data['already_got'] + 1)
                         }
                         return false;
                     });
-                    $(d[0]).first().after(toClick);
+                        $(d[0]).first().after(toClick);
+                    } else { // not on page
+                        hintable.push(d[2])
+                    }
                 }
             });
+
+            function getHint() {
+                let showHint = localStorage['aprilFoolShowHint' + today.getYear()] || false;
+                if (!showHint) {
+                    return '?';
+                } else {
+                    if (onPage > 0) {
+                        return (': I see ' + onPage + conf.toFind + '!');
+                    } else {
+                        let hintCounter = parseInt(localStorage['aprilFoolShowHint' + today.getYear()]) || 0;
+                        if (hintCounter >= 5) {
+                            localStorage['aprilFoolShowHint' + today.getYear()] = 0;
+                            return ': ' + hintable[Math.floor(Math.random() * hintable.length)];
+                        } else {
+                            localStorage['aprilFoolShowHint' + today.getYear()] = hintCounter + 1;
+                            return ': Nothing to see here...';
+                        }
+                    }
+                }
+            }
+
             let totalToFind = conf.hiddenAfterDivs.length;
+
             let popup = $('<div class="aprilFoolsPopup">\
-You found <span class="found">' + totalFound + '</span> / <span>' + totalToFind + '</span> ' + conf.toFind + '\
+You found <span class="found">' + totalFound + '</span> / <span>' + totalToFind + '</span> ' + conf.toFind + '<br>\
+<a href="#getHint" class="a-nodifference fontx0-8"><i class="flaticon-idea"></i> Hint<span class="hint">' + getHint() + '</span></a>\
 </div>');
+            popup.find('[href="#getHint"]').click(function(e) {
+                e.preventDefault();
+                let showHint = localStorage['aprilFoolShowHint' + today.getYear()] || false;
+                if (showHint) {
+                    localStorage.removeItem('aprilFoolShowHint' + today.getYear());
+                    popup.find('.hint').html(getHint());
+                } else {
+                    localStorage['aprilFoolShowHint' + today.getYear()] = true;
+                    popup.find('.hint').html(getHint());
+                }
+                return false;
+            });
             $('body').append(popup);
         }
 

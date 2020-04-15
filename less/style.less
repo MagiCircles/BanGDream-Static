@@ -86,35 +86,6 @@ h1, h2, h3, h4, h5, h6, .title, .navbar-brand, .btn-lg, .btn-xl, .collection-tab
 /* Single pages */
 /******************************************/
 
-/* Index */
-
-.current-activity_list[class*="shortcut-"] {
-    .home-site-logo, h2.home-site-description {
-        width: 140%;
-        max-width: 120%;
-        margin-left: -10%;
-        margin-top: 60px;
-        margin-bottom: 10px;
-    }
-}
-@media(max-width: 991px) {
-    .current-activity_list[class*="shortcut-"] {
-        .home-site-logo, h2.home-site-description {
-            width: 100%;
-            margin-left: auto;
-        }
-    }
-}
-
-@media (min-width: 768px) {
-    .default-index {
-        header {
-            padding: 0;
-            padding-bottom: 30px;
-        }
-    }
-}
-
 /* Team builder */
 
 .team-builder-member {
@@ -367,10 +338,10 @@ html:not([lang^="zh-han"]):not([lang="kr"]):not([lang="ja"]):not([lang="ru"]):no
             .rarity_border_color(@color);
         }
     }
-    &.card-Power { .per_attribute(@powerColor); }
-    &.card-Cool { .per_attribute(@coolColor); }
-    &.card-Pure { .per_attribute(@pureColor); }
-    &.card-Happy { .per_attribute(@happyColor); }
+    &.card-Power { .per_attribute(@PowerColor); }
+    &.card-Cool { .per_attribute(@CoolColor); }
+    &.card-Pure { .per_attribute(@PureColor); }
+    &.card-Happy { .per_attribute(@HappyColor); }
 
     &.card-rarity-4 {
         background-image: linear-gradient(140deg, #F97EE6, #FEE4F8, #F8A382, #F8C74F, #A8E651, #4CE1EE, #669EF5, #E5E5FD, #ED7DDF);
@@ -442,10 +413,10 @@ html:not([lang^="zh-han"]):not([lang="kr"]):not([lang="ja"]):not([lang="ru"]):no
             &.active {
                 color: white;
                 box-shadow: none;
-                &.attribute-Power { background-color: @powerColor; }
-                &.attribute-Cool { background-color: @coolColor; }
-                &.attribute-Pure { background-color: @pureColor; }
-                &.attribute-Happy { background-color: @happyColor; }
+                &.attribute-Power { background-color: @PowerColor; }
+                &.attribute-Cool { background-color: @CoolColor; }
+                &.attribute-Pure { background-color: @PureColor; }
+                &.attribute-Happy { background-color: @HappyColor; }
             }
         }
         .btn-group, .tab-content {
@@ -476,19 +447,19 @@ html:not([lang^="zh-han"]):not([lang="kr"]):not([lang="ja"]):not([lang="ru"]):no
 .stat-label-performance { background-color: @performanceColor; }
 .stat-label-technique { background-color: @techniqueColor; }
 .stat-label-visual { background-color: @visualColor; }
-.stat-label-Power { background-color: lighten(@powerColor, 30%); }
-.stat-label-Cool { background-color: lighten(@coolColor, 30%); }
-.stat-label-Pure { background-color: lighten(@pureColor, 30%); }
-.stat-label-Happy { background-color: lighten(@happyColor, 30%); }
+.stat-label-Power { background-color: lighten(@PowerColor, 30%); }
+.stat-label-Cool { background-color: lighten(@CoolColor, 30%); }
+.stat-label-Pure { background-color: lighten(@PureColor, 30%); }
+.stat-label-Happy { background-color: lighten(@HappyColor, 30%); }
 
 .progress-bar-performance { .progress-bar-variant(@performanceColor); }
 .progress-bar-technique { .progress-bar-variant(@techniqueColor); }
 .progress-bar-visual { .progress-bar-variant(@visualColor); }
 
-.progress-bar-Power-light { .progress-bar-variant(lighten(@powerColor, 30%)); }
-.progress-bar-Cool-light { .progress-bar-variant(lighten(@coolColor, 30%)); }
-.progress-bar-Pure-light { .progress-bar-variant(lighten(@pureColor, 30%)); }
-.progress-bar-Happy-light { .progress-bar-variant(lighten(@happyColor, 30%)); }
+.progress-bar-Power-light { .progress-bar-variant(lighten(@PowerColor, 30%)); }
+.progress-bar-Cool-light { .progress-bar-variant(lighten(@CoolColor, 30%)); }
+.progress-bar-Pure-light { .progress-bar-variant(lighten(@PureColor, 30%)); }
+.progress-bar-Happy-light { .progress-bar-variant(lighten(@HappyColor, 30%)); }
 
 @media (max-width: 890px) {
     .icon-card, .icon-card + .btn-group {
@@ -512,13 +483,6 @@ html:not([lang^="zh-han"]):not([lang="kr"]):not([lang="ja"]):not([lang="ru"]):no
 
 .collection-table [data-item="collectiblecard"] [data-field="image"] {
     width: 10%;
-}
-
-@media (max-width: 768px) {
-    [data-item="collectiblecard"] {
-        padding-left: 1px;
-        padding-right: 1px;
-    }
 }
 
 .about-table {

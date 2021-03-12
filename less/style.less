@@ -710,6 +710,24 @@ tr[data-field="band"] img {
     text-align: left;
 }
 
+.song-full {
+    color: #fff;
+    display: block;
+    font-size: 2em;
+    font-family: 'SoftSoul', 'Impact', sans-serif;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    transform: translateY(-100%) rotate(10deg);
+    text-shadow: 
+        2px 2px 0 @mainColor, 
+        -1px -1px 0 @mainColor, 
+        1px -1px 0 @mainColor, 
+        -1px 1px 0 @mainColor, 
+    1px 1px 0 @mainColor;
+    -webkit-text-stroke: 1px @mainColor;
+}
+
 .add_buttons a[href^="/songs/add/"] {
     padding: 20px 10px;
     border-radius: 10px;

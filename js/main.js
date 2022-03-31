@@ -314,21 +314,42 @@ function loadEventForm() {
 
 // *****************************************
 
+// RAS
+// function aprilFoolsTakeOverDivs() {
+//     $('.home-site-logo img').prop('src', 'https://i.imgur.com/ro41zfs.png');
+//     let ras = 'https://i.imgur.com/u3MjoNt.png';
+//     setHomepageArt({
+//         'url': ras,
+//         'gradient': true,
+//         'side': 'left',
+//         'position': { 'size': '150%', 'y': '30%', 'x': '100%' },
+//     });
+//     $('.site-name').text('RAISE A SUILEN Party');
+//     $('.navbar-brand .logo').prop('src', 'https://i.bandori.party/u/i/m/40CHU%C2%B2-OuDbvK.png');
+//     $('.navbar-brand .site-name').text('RAS Party');
+//     $('body.current-member_list .collection-page-wrapper').before('<a href="#" id="just-ras"><img src="https://i.bandori.party/u/asset/PtER2sRAISE-A-SUILEN-OHMORI-Visual-eYtxG9.png" class="img-responsive" /></a>');
+//     $('body.current-member_list .collection-page-wrapper').children().hide();
+//     $('body.current-member_list #just-ras').click(function() {
+//         $(this).hide();
+//         $('body.current-member_list .collection-page-wrapper').children().show();
+//     });
+// }
+
+// Phantom Thief
 function aprilFoolsTakeOverDivs() {
-    $('.home-site-logo img').prop('src', 'https://i.imgur.com/ro41zfs.png');
-    let ras = 'https://i.imgur.com/u3MjoNt.png';
+    let card = 'https://i.bandori.party/u/c/art/a/612Kaoru-Seta-Happy-HaroHapi-Thief-hhZP6h.png';
     setHomepageArt({
-        'url': ras,
+        'url': card,
         'gradient': true,
         'side': 'left',
         'position': { 'size': '150%', 'y': '30%', 'x': '100%' },
     });
-    $('.site-name').text('RAISE A SUILEN Party');
-    $('.navbar-brand .logo').prop('src', 'https://i.bandori.party/u/i/m/40CHU%C2%B2-OuDbvK.png');
-    $('.navbar-brand .site-name').text('RAS Party');
-    $('body.current-member_list .collection-page-wrapper').before('<a href="#" id="just-ras"><img src="https://i.bandori.party/u/asset/PtER2sRAISE-A-SUILEN-OHMORI-Visual-eYtxG9.png" class="img-responsive" /></a>');
+    $('.site-name').text('Phantom Thief Party');
+    $('.navbar-brand .logo').prop('src', 'https://i.imgur.com/UaroBU7.png');
+    $('.navbar-brand .site-name').text('Phantom Thief Party');
+    $('body.current-member_list .collection-page-wrapper').before('<a href="#" id="just-kaoru"><img src="https://i.bandori.party/u/c/art/a/612Kaoru-Seta-Happy-HaroHapi-Thief-hhZP6h.png" class="img-responsive" /></a>');
     $('body.current-member_list .collection-page-wrapper').children().hide();
-    $('body.current-member_list #just-ras').click(function() {
+    $('body.current-member_list #just-kaoru').click(function() {
         $(this).hide();
         $('body.current-member_list .collection-page-wrapper').children().show();
     });

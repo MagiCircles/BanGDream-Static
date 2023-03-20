@@ -343,6 +343,10 @@ html:not([lang^="zh-han"]):not([lang="kr"]):not([lang="ja"]):not([lang="ru"]):no
     &.card-Pure { .per_attribute(@PureColor); }
     &.card-Happy { .per_attribute(@HappyColor); }
 
+    &.card-rarity-5 {
+        background-image: linear-gradient(140deg, #FF4648, #FFCDB0, #FFBCDA, #FFFEB6, #FE4A96, #FF6E25, #FFF656, #FFBAFE, #FE8F20, #FFFE3D, #FF98EB, #FF7B19, #FFDB0E, #FF443F, #FF4E80, #B30E4D);
+        .rarity_border_color(lighten(#B80344, 40%));
+    }
     &.card-rarity-4 {
         background-image: linear-gradient(140deg, #F97EE6, #FEE4F8, #F8A382, #F8C74F, #A8E651, #4CE1EE, #669EF5, #E5E5FD, #ED7DDF);
         .rarity_border_color(lighten(#AD3EC4, 20%));
@@ -635,7 +639,7 @@ tr[data-field="band"] img {
 
 /* Event */
 
-#id_i_boost_stat + .cuteform {
+#id_i_boost_stat + .cuteform, #id_event_i_boost_stat + .cuteform {
     .cuteform-elt {
         padding: 0;
         vertical-align: middle;
@@ -719,11 +723,11 @@ tr[data-field="band"] img {
     padding: 0;
     position: absolute;
     transform: translateY(-100%) rotate(10deg);
-    text-shadow: 
-        2px 2px 0 @mainColor, 
-        -1px -1px 0 @mainColor, 
-        1px -1px 0 @mainColor, 
-        -1px 1px 0 @mainColor, 
+    text-shadow:
+        2px 2px 0 @mainColor,
+        -1px -1px 0 @mainColor,
+        1px -1px 0 @mainColor,
+        -1px 1px 0 @mainColor,
     1px 1px 0 @mainColor;
     -webkit-text-stroke: 1px @mainColor;
 }
